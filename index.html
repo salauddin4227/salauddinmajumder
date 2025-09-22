@@ -157,29 +157,133 @@
         .skill-item .skill-icon { font-size: 1.1rem; color: var(--primary-color); flex-shrink: 0; width: 20px; text-align: center; margin-right: 0; line-height: 1; }
         .skill-item span { font-weight: 400; color: var(--text-light); font-size: 0.9rem; }
 
-        /* --- Experience Section --- */
-        .timeline { position: relative; max-width: 800px; margin: 0 auto; padding: 2rem 0; }
-        .timeline::after { content: ''; position: absolute; width: 4px; background-color: var(--primary-color); opacity: 0.3; top: 0; bottom: 0; left: 50%; margin-left: -2px; border-radius: 2px; }
-        .timeline-item { padding: 10px 40px; position: relative; background-color: inherit; width: 50%; }
-        .timeline-dot { content: ''; position: absolute; width: 16px; height: 16px; background-color: var(--bg-dark); border: 4px solid var(--primary-color); top: 25px; border-radius: 50%; z-index: 1; }
-        .timeline-item:nth-child(odd) { left: 0; padding-right: 60px; }
-        .timeline-item:nth-child(odd) .timeline-dot { right: -8px; }
-        .timeline-item:nth-child(odd) .timeline-content { text-align: right; }
-        .timeline-item:nth-child(even) { left: 50%; padding-left: 60px; }
-        .timeline-item:nth-child(even) .timeline-dot { left: -8px; }
-        .timeline-content { padding: clamp(1rem, 3vw, 1.5rem); background-color: var(--card-bg); position: relative; border-radius: 8px; border: 1px solid var(--border-color); transition: transform 0.3s ease, box-shadow 0.3s ease; }
-        .timeline-content:hover { transform: scale(1.03); box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2); }
-        .timeline-date { display: block; font-size: 0.9rem; color: var(--text-light); opacity: 0.7; margin-top: 0.5rem; margin-bottom: 0.5rem; }
-        .timeline-content h3 { margin-top: 0; color: var(--primary-color); }
+        /* --- Experience Section (Reference Style) --- */
+        .experience-list {
+            display: flex;
+            flex-direction: column;
+            gap: 2.5rem;
+        }
+        .experience-item {
+            background-color: var(--card-bg);
+            padding: 1.5rem;
+            border-radius: 10px;
+            border: 1px solid var(--border-color);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .experience-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2), 0 0 15px var(--glow-color);
+        }
+        .exp-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+        .exp-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+        .exp-title .company {
+            color: var(--text-light);
+            font-weight: 500;
+        }
+        .exp-date-range {
+            font-size: 0.9rem;
+            color: var(--text-medium);
+            flex-shrink: 0;
+        }
+        .exp-description {
+            margin-bottom: 1rem;
+        }
+        .exp-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        .exp-tech span {
+            background-color: rgba(0, 170, 255, 0.1);
+            color: var(--primary-color);
+            padding: 0.2rem 0.6rem;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            border: 1px solid rgba(0, 170, 255, 0.3);
+        }
 
         /* --- Projects Section --- */
         .projects-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: clamp(1.5rem, 3vw, 2rem); perspective: 1000px; text-align: left; }
         .project-card { background-color: var(--card-bg); border-radius: 10px; overflow: hidden; border: 1px solid var(--border-color); transition: transform 0.5s ease, box-shadow 0.5s ease; transform-style: preserve-3d; display: flex; flex-direction: column; }
         .project-card-inner { padding: 1.5rem; display: flex; flex-direction: column; width: 100%; text-align: left; flex-grow: 1; }
         .project-card:hover { transform: rotateY(5deg) rotateX(3deg) scale(1.03); box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4), 0 0 15px var(--glow-color); }
-        .project-image { width: 100%; height: 180px; overflow: hidden; margin-bottom: 1rem; border-radius: 6px; background-color: var(--bg-light-dark); }
-        .project-image img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s ease; }
-        .project-card:hover .project-image img { transform: scale(1.05); }
+        
+        .mobile-frame {
+            position: relative;
+            width: 100%;
+            padding-top: 216.67%; /* 9:16 aspect ratio */
+            background-color: #111;
+            border-radius: 20px;
+            border: 8px solid #000;
+            box-shadow: 0 0 10px rgba(0,0,0,0.5);
+            overflow: hidden;
+        }
+        .mobile-frame::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 40%;
+            height: 15px;
+            background-color: #000;
+            border-bottom-left-radius: 10px;
+            border-bottom-right-radius: 10px;
+            z-index: 2;
+        }
+        .project-image-slider {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+        .project-image {
+            flex: 0 0 100%;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+        .project-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .slider-dots {
+            position: absolute;
+            bottom: 15px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 8px;
+            z-index: 3;
+        }
+        .slider-dots .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .slider-dots .dot.active {
+            background-color: var(--primary-color);
+        }
+
         .project-card h3 { margin-top: 0; color: var(--primary-color); text-align: left; }
         .project-tags { margin: 1rem 0; flex-wrap: wrap; gap: 0.5rem; display: flex; justify-content: flex-start; }
         .project-tags span { background-color: rgba(0, 170, 255, 0.1); color: var(--primary-color); padding: 0.2rem 0.6rem; border-radius: 4px; font-size: 0.8rem; border: 1px solid rgba(0, 170, 255, 0.3); }
@@ -276,7 +380,6 @@
             .skill-item { padding: 0.6rem 1rem; }
             .skill-item .skill-icon { font-size: 1rem; }
             .skill-item span { font-size: 0.85rem; }
-            .project-image { height: 160px; }
             .about-visuals { align-items: center; }
             .contact-links-list li { flex-basis: 100%; justify-content: center; min-width: unset; }
         }
@@ -298,6 +401,12 @@
             .project-image { height: 140px; }
             .about-container { grid-template-columns: 1fr; }
             .about-image { max-width: 150px; }
+        }
+
+        @media (max-width: 480px) {
+            .mobile-frame {
+                padding-top: 177.78%; /* 9:16 aspect ratio for smaller screens */
+            }
         }
     </style>
 </head>
@@ -344,7 +453,7 @@
                 </div>
                 <div class="hero-image-container">
                     <!-- !!! REPLACE 'your-photo.jpg' with your actual photo path !!! -->
-                    <img src="IMG_3.JPG" alt="Salauddin Majumder" class="profile-pic">
+                    <img src="profile.png" alt="Salauddin Majumder" class="profile-pic">
                 </div>
             </div>
              <div class="scroll-down-indicator">
@@ -363,9 +472,8 @@
                     <p>Currently in Last Semester in Bachelor of Science in Computer Science & Engineering at Daffodil International University.</p>
                      <a href="#" target="_blank" class="cta-button">Download CV</a>
                 </div>
-                <div class="hero-image-container">
-                    <!-- !!! REPLACE 'your-photo.jpg' with your actual photo path !!! -->
-                    <img src="s2.jpg" alt="Salauddin Majumder" class="profile-pic">
+                <div class="about-visuals">
+                     <img src="s2.jpg" alt="Decorative image related to Salauddin" class="about-image">
                 </div>
             </div>
         </section>
@@ -376,7 +484,7 @@
                  <h2 class="section-title animate-on-scroll fade-in-up">Core Qualifications</h2>
             </div>
             <div class="skills-container">
-                 <div class="skill-category animate-on-scroll fade-in"><h3><i class="fas fa-brain icon"></i> AI & Machine Learning</h3><ul class="skill-items-list"><li class="skill-item"><i class="fas fa-robot skill-icon"></i> <span>Machine Learning</span></li><li class="skill-item"><i class="fas fa-lightbulb skill-icon"></i> <span>Artificial Intelligence</span></li><li class="skill-item"><i class="fas fa-chart-bar skill-icon"></i> <span>Natural Language Processing(NLP)</span></li><li class="skill-item"><i class="fas fa-chart-bar skill-icon"></i> <span>Data Analysis</span></li></ul></div>
+                 <div class="skill-category animate-on-scroll fade-in"><h3><i class="fas fa-brain icon"></i> AI & Machine Learning</h3><ul class="skill-items-list"><li class="skill-item"><i class="fas fa-robot skill-icon"></i> <span>Machine Learning</span></li><li class="skill-item"><i class="fas fa-lightbulb skill-icon"></i> <span>Artificial Intelligence</span></li><li class="skill-item"><i class="fas fa-chart-bar skill-icon"></i> <span>Data Analysis</span></li></ul></div>
                  <div class="skill-category animate-on-scroll fade-in"><h3><i class="fas fa-code icon"></i> Programming Languages</h3><ul class="skill-items-list"><li class="skill-item"><i class="fab fa-cuttlefish skill-icon"></i> <span>C / C++</span></li><li class="skill-item"><i class="fab fa-python skill-icon"></i> <span>Python</span></li><li class="skill-item"><i class="fab fa-js-square skill-icon"></i> <span>JavaScript</span></li><li class="skill-item"><i class="fas fa-mobile-alt skill-icon"></i> <span>Dart</span></li></ul></div>
                  <div class="skill-category animate-on-scroll fade-in"><h3><i class="fas fa-laptop-code icon"></i> Development</h3><ul class="skill-items-list"><li class="skill-item"><i class="fas fa-globe skill-icon"></i> <span>Web Basics</span></li><li class="skill-item"><i class="fab fa-android skill-icon"></i> <span>Mobile App (Flutter)</span></li></ul></div>
                  <div class="skill-category animate-on-scroll fade-in"><h3><i class="fas fa-palette icon"></i> Design & Video</h3><ul class="skill-items-list"><li class="skill-item"><i class="fas fa-pencil-ruler skill-icon"></i> <span>Photoshop/Illustrator</span></li><li class="skill-item"><i class="fab fa-figma skill-icon"></i> <span>Canva / Figma</span></li><li class="skill-item"><i class="fas fa-cube skill-icon"></i> <span>Blender</span></li><li class="skill-item"><i class="fas fa-film skill-icon"></i> <span>After Effects</span></li></ul></div>
@@ -386,19 +494,55 @@
         </section>
 
         <!-- Experience Section -->
+        <!-- Experience Section -->
         <section id="experience" class="content-section">
             <div class="section-title-wrapper">
-                 <h2 class="section-title animate-on-scroll fade-in-up">Experience</h2>
+                <h2 class="section-title animate-on-scroll fade-in-up">Experience</h2>
             </div>
-             <div class="timeline">
-                 <div class="timeline-item animate-on-scroll fade-in-left"><div class="timeline-dot"></div><div class="timeline-content"><h3>Android App Developer - Google Play Store</h3><span class="timeline-date">August 1 2025 - Present</span><p>Published a professional AI Assistant app(UkilGiri)</p><p> Another Professional AI based app is in closed test</p></div></div>
-                 <div class="timeline-item animate-on-scroll fade-in-left"><div class="timeline-dot"></div><div class="timeline-content"><h3>Content Creator - Facebook</h3><span class="timeline-date">June 4 2025 - Present</span><p>Got more than 3.3 Million Views in 2 weeks</p><p> Achieved more than 9K followers in 2 weeks</p></div></div>
-                 <div class="timeline-item animate-on-scroll fade-in-left"><div class="timeline-dot"></div><div class="timeline-content"><h3>Founder & Teacher - Monozog.com</h3><span class="timeline-date">June 2023 - Present</span><p>Managed structure & execution. Taught C Programming & Data Structures (1000+ students). Video design & editing.</p></div></div>
-                 <div class="timeline-item animate-on-scroll fade-in-right"><div class="timeline-dot"></div><div class="timeline-content"><h3>Undergraduate Researcher - 4IR Research Cell, DIU</h3><span class="timeline-date">July 2023 - July 2024</span><p>Authored book chapter (BME & AI). Supervised 17+ micro-credential ideas. 2 RIC Projects accepted. Banner design.</p></div></div>
-                 <div class="timeline-item animate-on-scroll fade-in-left"><div class="timeline-dot"></div><div class="timeline-content"><h3>Campus Lead - STEMX365</h3><span class="timeline-date">Jan 2023 - June 2024</span><p>Managed on-campus marketing activities.</p></div></div>
-                 <div class="timeline-item animate-on-scroll fade-in-right"><div class="timeline-dot"></div><div class="timeline-content"><h3>Researcher - FAB LAB, DIU</h3><span class="timeline-date">July 2022 - Dec 2022</span><p>Collected, analyzed, interpreted research data using stats & visualization.</p></div></div>
-                 <div class="timeline-item animate-on-scroll fade-in-left"><div class="timeline-dot"></div><div class="timeline-content"><h3>Interviewer & Host - Art of Living DIU</h3><span class="timeline-date">Jan 2022 - June 2022</span><p>Interviewed founders (Rokomari) & scientists (Sonali Bag inventor).</p></div></div>
-             </div>
+            <div class="experience-list">
+                <div class="experience-item animate-on-scroll fade-in">
+                    <div class="exp-header">
+                        <h3 class="exp-title">Content Creator <span class="company">- Facebook</span></h3>
+                        <span class="exp-date-range">June 2025 - Present</span>
+                    </div>
+                    <p class="exp-description">Got more than 3.3 Million Views in 2 weeks. Achieved more than 9K followers in 2 weeks.</p>
+                </div>
+                <div class="experience-item animate-on-scroll fade-in">
+                    <div class="exp-header">
+                        <h3 class="exp-title">Founder & Teacher <span class="company">- Monozog.com</span></h3>
+                        <span class="exp-date-range">June 2023 - Present</span>
+                    </div>
+                    <p class="exp-description">Managed structure & execution. Taught C Programming & Data Structures (1000+ students). Video design & editing.</p>
+                </div>
+                <div class="experience-item animate-on-scroll fade-in">
+                    <div class="exp-header">
+                        <h3 class="exp-title">Undergraduate Researcher <span class="company">- 4IR Research Cell, DIU</span></h3>
+                        <span class="exp-date-range">July 2023 - July 2024</span>
+                    </div>
+                    <p class="exp-description">Authored book chapter (BME & AI). Supervised 17+ micro-credential ideas. 2 RIC Projects accepted. Banner design.</p>
+                </div>
+                <div class="experience-item animate-on-scroll fade-in">
+                    <div class="exp-header">
+                        <h3 class="exp-title">Campus Lead <span class="company">- STEMX365</span></h3>
+                        <span class="exp-date-range">Jan 2023 - June 2024</span>
+                    </div>
+                    <p class="exp-description">Managed on-campus marketing activities.</p>
+                </div>
+                <div class="experience-item animate-on-scroll fade-in">
+                    <div class="exp-header">
+                        <h3 class="exp-title">Researcher <span class="company">- FAB LAB, DIU</span></h3>
+                        <span class="exp-date-range">July 2022 - Dec 2022</span>
+                    </div>
+                    <p class="exp-description">Collected, analyzed, interpreted research data using stats & visualization.</p>
+                </div>
+                <div class="experience-item animate-on-scroll fade-in">
+                    <div class="exp-header">
+                        <h3 class="exp-title">Interviewer & Host <span class="company">- Art of Living DIU</span></h3>
+                        <span class="exp-date-range">Jan 2022 - June 2022</span>
+                    </div>
+                    <p class="exp-description">Interviewed founders (Rokomari) & scientists (Sonali Bag inventor).</p>
+                </div>
+            </div>
         </section>
 
         <!-- Projects Section -->
@@ -408,26 +552,106 @@
             </div>
             <div class="projects-container">
                 <div class="project-card animate-on-scroll pop-in">
-                    <div class="project-image"><img src="aiquizmaker.jpg" alt="Monozog Platform Cover Image"></div>
-                    <div class="project-card-inner"><h3>AI Quiz Maker (Flutter)</h3><p>Built a multilingual quiz app using Flutter, supporting 50+ languages and 4+ question types (MCQ, True/False, Fill in the Blanks, Descriptive). Features real-time quiz generation from user input, Firebase authentication, and a responsive UI.</p><div class="project-tags"><span>Flutter</span><span>Firebase</span><span>AI Integration</span></div><div class="project-links"><a href="https://github.com/salauddin4227/AI-Quiz-Maker" target="_blank" class="link-button">View Project</a></div></div>
-                 </div>
-                
-                 <div class="project-card animate-on-scroll pop-in">
-                     <div class="project-image"><img src="p3.jpg" alt="AI in BME Book Chapter Cover Image"></div>
-                     <div class="project-card-inner"><h3>AI in BME Book Chapter</h3><p>Contributed chapter on AI applications in Biomedical Engineering.</p><div class="project-tags"><span>Research</span><span>Writing</span><span>AI</span><span>BME</span></div><div class="project-links"><a href="https://www.rokomari.com/book/413679/baboharik-o-gobeshonay-biomedical-engineering" target="_blank" class="link-button">View Project</a></div></div>
-                 </div>
-                 <div class="project-card animate-on-scroll pop-in">
-                     <div class="project-image"><img src="p4.png" alt="Micro-Credential Development Cover Image"></div>
-                     <div class="project-card-inner"><h3>Micro-Credential Dev</h3><p>Supervised ideation for 17+ micro-credential courses at DIU 4IR Cell.</p><div class="project-tags"><span>Course Design</span><span>Leadership</span></div><div class="project-links"><a href="#" target="_blank" class="link-button" title="Conceptual project - No direct link">View Project</a></div></div>
-                 </div>
+                    <div class="mobile-frame">
+                        <div class="project-image-slider">
+                            <div class="project-image"><img src="1.jpg" alt="AI Quiz Maker Image 1"></div>
+                            <div class="project-image"><img src="2.jpg" alt="AI Quiz Maker Image 2"></div>
+                            <div class="project-image"><img src="3.jpg" alt="AI Quiz Maker Image 2"></div>
+                            <div class="project-image"><img src="4.jpg" alt="AI Quiz Maker Image 2"></div>
+                            <div class="project-image"><img src="5.jpg" alt="AI Quiz Maker Image 2"></div>
+                        </div>
+                        <div class="slider-dots"></div>
+                    </div>
+                    <div class="project-card-inner">
+                        <h3>UkilGiri (Flutter)</h3>
+                        <p>Built a multilingual quiz app using Flutter, supporting 50+ languages and 4+ question types (MCQ, True/False, Fill in the Blanks, Descriptive). Features real-time quiz generation from user input, Firebase authentication, and a responsive UI.</p>
+                        <div class="project-tags"><span>Flutter</span><span>Firebase</span><span>AI Integration</span></div>
+                        <div class="project-links"><a href="https://github.com/salauddin4227/AI-Quiz-Maker" target="_blank" class="link-button">View Project</a></div>
+                    </div>
+                </div>
+                                <div class="project-card animate-on-scroll pop-in">
+                    <div class="mobile-frame">
+                        <div class="project-image-slider">
+                            <div class="project-image"><img src="1.jpg" alt="AI Quiz Maker Image 1"></div>
+                            <div class="project-image"><img src="2.jpg" alt="AI Quiz Maker Image 2"></div>
+                            <div class="project-image"><img src="3.jpg" alt="AI Quiz Maker Image 2"></div>
+                            <div class="project-image"><img src="4.jpg" alt="AI Quiz Maker Image 2"></div>
+                            <div class="project-image"><img src="5.jpg" alt="AI Quiz Maker Image 2"></div>
+                        </div>
+                        <div class="slider-dots"></div>
+                    </div>
+                    <div class="project-card-inner">
+                        <h3>AI Quiz Maker (Flutter)</h3>
+                        <p>Built a multilingual quiz app using Flutter, supporting 50+ languages and 4+ question types (MCQ, True/False, Fill in the Blanks, Descriptive). Features real-time quiz generation from user input, Firebase authentication, and a responsive UI.</p>
+                        <div class="project-tags"><span>Flutter</span><span>Firebase</span><span>AI Integration</span></div>
+                        <div class="project-links"><a href="https://github.com/salauddin4227/AI-Quiz-Maker" target="_blank" class="link-button">View Project</a></div>
+                    </div>
+                </div>
 
-                 <div class="project-card animate-on-scroll pop-in">
-                    <div class="project-image"><img src="p2.jpg" alt="Monozog Platform Cover Image"></div>
-                    <div class="project-card-inner"><h3>Monozog Platform</h3><p>Online platform for C/Data Structures, reaching 1000+ students.</p><div class="project-tags"><span>Teaching</span><span>Video</span><span>Platform</span></div><div class="project-links"><a href="https://www.facebook.com/monozog" target="_blank" class="link-button">View Project</a></div></div>
-                 </div>
+                                <div class="project-card animate-on-scroll pop-in">
+                    <div class="mobile-frame">
+                        <div class="project-image-slider">
+                            <div class="project-image"><img src="1.jpg" alt="AI Quiz Maker Image 1"></div>
+                            <div class="project-image"><img src="2.jpg" alt="AI Quiz Maker Image 2"></div>
+                            <div class="project-image"><img src="3.jpg" alt="AI Quiz Maker Image 2"></div>
+                            <div class="project-image"><img src="4.jpg" alt="AI Quiz Maker Image 2"></div>
+                            <div class="project-image"><img src="5.jpg" alt="AI Quiz Maker Image 2"></div>
+                        </div>
+                        <div class="slider-dots"></div>
+                    </div>
+                    <div class="project-card-inner">
+                        <h3>AI Quiz Maker (Flutter)</h3>
+                        <p>Built a multilingual quiz app using Flutter, supporting 50+ languages and 4+ question types (MCQ, True/False, Fill in the Blanks, Descriptive). Features real-time quiz generation from user input, Firebase authentication, and a responsive UI.</p>
+                        <div class="project-tags"><span>Flutter</span><span>Firebase</span><span>AI Integration</span></div>
+                        <div class="project-links"><a href="https://github.com/salauddin4227/AI-Quiz-Maker" target="_blank" class="link-button">View Project</a></div>
+                    </div>
+                </div>
 
-
-
+                <div class="project-card animate-on-scroll pop-in">
+                    <div class="mobile-frame">
+                        <div class="project-image-slider">
+                            <div class="project-image"><img src="p3.jpg" alt="AI in BME Book Chapter Image 1"></div>
+                            <div class="project-image"><img src="p3.jpg" alt="AI in BME Book Chapter Image 2"></div>
+                        </div>
+                        <div class="slider-dots"></div>
+                    </div>
+                    <div class="project-card-inner">
+                        <h3>AI in BME Book Chapter</h3>
+                        <p>Contributed chapter on AI applications in Biomedical Engineering.</p>
+                        <div class="project-tags"><span>Research</span><span>Writing</span><span>AI</span><span>BME</span></div>
+                        <div class="project-links"><a href="https://www.rokomari.com/book/413679/baboharik-o-gobeshonay-biomedical-engineering" target="_blank" class="link-button">View Project</a></div>
+                    </div>
+                </div>
+                <div class="project-card animate-on-scroll pop-in">
+                    <div class="mobile-frame">
+                        <div class="project-image-slider">
+                            <div class="project-image"><img src="p4.png" alt="Micro-Credential Development Image 1"></div>
+                            <div class="project-image"><img src="p4.png" alt="Micro-Credential Development Image 2"></div>
+                        </div>
+                        <div class="slider-dots"></div>
+                    </div>
+                    <div class="project-card-inner">
+                        <h3>Micro-Credential Dev</h3>
+                        <p>Supervised ideation for 17+ micro-credential courses at DIU 4IR Cell.</p>
+                        <div class="project-tags"><span>Course Design</span><span>Leadership</span></div>
+                        <div class="project-links"><a href="#" target="_blank" class="link-button" title="Conceptual project - No direct link">View Project</a></div>
+                    </div>
+                </div>
+                <div class="project-card animate-on-scroll pop-in">
+                    <div class="mobile-frame">
+                        <div class="project-image-slider">
+                            <div class="project-image"><img src="p2.jpg" alt="Monozog Platform Image 1"></div>
+                            <div class="project-image"><img src="p2.jpg" alt="Monozog Platform Image 2"></div>
+                        </div>
+                        <div class="slider-dots"></div>
+                    </div>
+                    <div class="project-card-inner">
+                        <h3>Monozog Platform</h3>
+                        <p>Online platform for C/Data Structures, reaching 1000+ students.</p>
+                        <div class="project-tags"><span>Teaching</span><span>Video</span><span>Platform</span></div>
+                        <div class="project-links"><a href="https://www.facebook.com/monozog" target="_blank" class="link-button">View Project</a></div>
+                    </div>
+                </div>
             </div>
         </section>
 
@@ -616,14 +840,61 @@
             const yearSpan = document.getElementById('current-year');
             if (yearSpan) { yearSpan.textContent = new Date().getFullYear(); }
 
+            // --- Project Sliders ---
+            const projectCards = document.querySelectorAll('.project-card');
+            projectCards.forEach(card => {
+                const slider = card.querySelector('.project-image-slider');
+                const dotsContainer = card.querySelector('.slider-dots');
+
+                if (slider && dotsContainer) {
+                    const slides = slider.querySelectorAll('.project-image');
+                    if (slides.length > 1) {
+                        let currentIndex = 0;
+                        let intervalId;
+
+                        // Create dots
+                        slides.forEach((_, i) => {
+                            const dot = document.createElement('div');
+                            dot.classList.add('dot');
+                            if (i === 0) dot.classList.add('active');
+                            dot.addEventListener('click', () => {
+                                goToSlide(i);
+                                resetInterval();
+                            });
+                            dotsContainer.appendChild(dot);
+                        });
+
+                        const dots = dotsContainer.querySelectorAll('.dot');
+
+                        function goToSlide(index) {
+                            currentIndex = index;
+                            slider.style.transform = `translateX(-${currentIndex * 100}%)`;
+                            dots.forEach((dot, i) => {
+                                dot.classList.toggle('active', i === currentIndex);
+                            });
+                        }
+
+                        function showNextSlide() {
+                            currentIndex = (currentIndex + 1) % slides.length;
+                            goToSlide(currentIndex);
+                        }
+
+                        function startInterval() {
+                            intervalId = setInterval(showNextSlide, 3000);
+                        }
+
+                        function resetInterval() {
+                            clearInterval(intervalId);
+                            startInterval();
+                        }
+
+                        startInterval();
+                    }
+                }
+            });
+
         }); // End DOMContentLoaded
     </script>
 
 </body>
 </html>
-
-
-
-
-
-
