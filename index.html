@@ -1239,6 +1239,9 @@
 
         // --- Magical Cursor Logic ---
         document.addEventListener('DOMContentLoaded', () => {
+            const isMobile = /Mobi|Android/i.test(navigator.userAgent) || (('ontouchstart' in window) || (navigator.maxTouchPoints > 0) || (navigator.msMaxTouchPoints > 0));
+            if (isMobile) return; // Do not run on mobile devices
+
             const cursor = document.createElement('div');
             cursor.id = 'magic-cursor';
             document.body.appendChild(cursor);
@@ -1301,5 +1304,3 @@
 
 </body>
 </html>
-
-
