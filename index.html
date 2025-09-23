@@ -3,13 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Salauddin Majumder - Portfolio</title>
+    <title>HERO SECTION TEST</title>
     <!-- Font Awesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Google Fonts (Poppins) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.fog.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.globe.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.cells.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.topology.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.net.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.halo.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.waves.min.js"></script>
 
     <style>
         /* --- Base Styles & Variables --- */
@@ -57,7 +65,47 @@
         img { max-width: 100%; height: auto; display: block; }
         .icon { margin-right: 0.7rem; color: var(--primary-color); width: 20px; text-align: center; flex-shrink: 0; }
         .content-section { padding: clamp(60px, 10vh, 90px) clamp(15px, 5vw, 50px); max-width: 1100px; margin: 0 auto; position: relative; z-index: 2; }
-        .alt-bg { background-color: var(--bg-light-dark); }
+        .alt-bg {
+            position: relative;
+        }
+        .alt-bg::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 100vw;
+                height: 100%;
+                background-color: var(--bg-light-dark);
+                z-index: -1;
+            }
+
+            .full-width-content-section {
+                max-width: 100%;
+                margin: 0;
+                padding: clamp(60px, 10vh, 90px) 0; /* Only vertical padding */
+            }
+
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.05);
+            -webkit-backdrop-filter: blur(12px);
+            backdrop-filter: blur(12px);
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .glass-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.05);
+            -webkit-backdrop-filter: blur(12px);
+            backdrop-filter: blur(12px);
+            z-index: -1;
+        }
 
         /* --- Section Title Centering (REFINED) --- */
          .section-title-wrapper {
@@ -108,7 +156,31 @@
         .menu-toggle { display: none; background: none; border: none; color: var(--text-light); font-size: 1.5rem; cursor: pointer; z-index: 1001; }
 
         /* --- Hero Section --- */
-        .hero-section { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 120px 20px 60px; background: linear-gradient(rgba(26, 26, 46, 0.9), rgba(22, 36, 71, 0.97)), url('background-placeholder.jpg') no-repeat center center/cover; position: relative; overflow: hidden; }
+        .hero-section { 
+            min-height: 100vh; 
+            display: flex; 
+            flex-direction: column; 
+            justify-content: center; 
+            align-items: center; 
+            padding: 120px 20px 60px; 
+            position: relative; 
+            overflow: hidden; 
+        }
+        #vanta-hero, #vanta-about, #vanta-skills, #vanta-projects, #vanta-experience, #vanta-achievements, #vanta-contact {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+        }
+        #vanta-experience, #vanta-about, #vanta-projects {
+            filter: blur(3px);
+        }
+        section {
+            position: relative;
+            overflow: hidden;
+        }
         .hero-content { display: flex; align-items: center; justify-content: space-between; gap: clamp(2rem, 6vw, 4rem); width: 100%; max-width: 1100px; z-index: 2; }
         .hero-text-content { flex: 1 1 55%; text-align: left; }
         .hero-image-container { flex: 0 0 auto; position: relative; }
@@ -116,7 +188,7 @@
         @keyframes profilePicAppear { to { opacity: 1; transform: translateX(0) scale(1); } }
         .hero-text-content h1 { margin-bottom: 0.5rem; background: linear-gradient(90deg, var(--grad-color-1), var(--grad-color-2), var(--grad-color-3), var(--grad-color-1)); background-size: 300% auto; -webkit-background-clip: text; background-clip: text; color: transparent; text-shadow: 0 0 5px rgba(0, 242, 255, 0.5), 0 0 10px rgba(140, 30, 255, 0.4), 0 0 15px rgba(255, 59, 202, 0.3); animation: gradientGlow 8s linear infinite; }
         @keyframes gradientGlow { 0% { background-position: 0% 50%; } 100% { background-position: 150% 50%; } }
-        .hero-text-content .subtitle { margin-bottom: 2rem; font-size: clamp(1rem, 3vw, 1.3rem); }
+        .hero-text-content .subtitle { margin-bottom: 2rem; font-size: clamp(1rem, 3vw, 1.3rem); font-weight: 500; text-shadow: 0 0 5px rgba(0,0,0,0.7); }
         .hero-text-content .social-links { margin-bottom: 2.5rem; }
         .hero-text-content .social-links a { color: var(--text-light); font-size: clamp(1.6rem, 4vw, 1.9rem); margin: 0 clamp(0.6rem, 2vw, 0.9rem); transition: transform 0.3s ease, color 0.3s ease; display: inline-block; }
         .hero-text-content .social-links a:hover { color: var(--primary-color); transform: scale(1.2); }
@@ -130,10 +202,24 @@
         /* --- About Section --- */
         .about-container { display: grid; grid-template-columns: 1.5fr 1fr; gap: clamp(3rem, 6vw, 4rem); align-items: center; }
         .about-text { text-align: left; opacity: 0; transform: translateX(-20px); animation: slideFadeInLeft 0.8s 0.2s ease-out forwards; }
-        .about-text p { color: var(--text-medium); margin-bottom: 1.5rem; line-height: 1.8; }
+        .about-text p { color: var(--text-medium); margin-bottom: 1.5rem; line-height: 1.8; text-align: justify; }
         .about-text .cta-button { margin-top: 1.5rem; display: inline-flex; }
         .about-visuals { display: flex; justify-content: center; align-items: center; opacity: 0; transform: translateX(20px); animation: slideFadeInRight 0.8s 0.4s ease-out forwards; }
-        .about-image { max-width: 300px; width: 100%; filter: drop-shadow(0 5px 15px rgba(0, 170, 255, 0.2)); opacity: 0; transform: scale(0.9) translateY(10px); animation: popUp 0.6s 0.6s ease-out forwards; }
+        .about-slider-wrapper {
+            width: clamp(220px, 30vw, 300px);
+            height: clamp(220px, 30vw, 300px);
+            position: relative;
+            border: 6px solid var(--primary-color);
+            border-radius: 25px;
+            overflow: hidden;
+            filter: drop-shadow(0 5px 15px rgba(0, 170, 255, 0.2));
+            opacity: 0;
+            transform: scale(0.9) translateY(10px);
+            animation: popUp 0.6s 0.6s ease-out forwards;
+        }
+        .about-visuals .project-image img {
+            object-fit: cover; /* Override for about me slider to crop images */
+        }
         /* Highlight styles */
         .highlight-glow, .highlight-gradient { font-weight: 500; }
         .highlight-glow { color: var(--primary-color); text-shadow: 0 0 8px var(--highlight-glow-color), 0 0 15px var(--highlight-glow-color); animation: pulseGlow 3s infinite alternate ease-in-out; }
@@ -144,6 +230,18 @@
         @keyframes slideFadeInLeft { to { opacity: 1; transform: translateX(0); } }
         @keyframes slideFadeInRight { to { opacity: 1; transform: translateX(0); } }
         @keyframes popUp { to { opacity: 1; transform: scale(1) translateY(0); } }
+
+        @keyframes floatAnimation {
+            0% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+            100% {
+                transform: translateY(0);
+            }
+        }
 
         /* --- Skills Section --- */
         .skills-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2.5rem; }
@@ -215,7 +313,7 @@
 
         /* --- Projects Section --- */
         .projects-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: clamp(1.5rem, 3vw, 2rem); perspective: 1000px; text-align: left; }
-        .project-card { background-color: var(--card-bg); border-radius: 10px; overflow: hidden; border: 1px solid var(--border-color); transition: transform 0.5s ease, box-shadow 0.5s ease; transform-style: preserve-3d; display: flex; flex-direction: column; }
+        .project-card { background-color: var(--card-bg); border-radius: 10px; overflow: hidden; border: 1px solid var(--border-color); transition: transform 0.5s ease, box-shadow 0.5s ease; transform-style: preserve-3d; display: flex; flex-direction: column; animation: floatAnimation 4s ease-in-out infinite; }
         .project-card-inner { padding: 1.5rem; display: flex; flex-direction: column; width: 100%; text-align: left; flex-grow: 1; }
         .project-card:hover { transform: rotateY(5deg) rotateX(3deg) scale(1.03); box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4), 0 0 15px var(--glow-color); }
         
@@ -226,8 +324,20 @@
             background-color: #111;
             border-radius: 20px;
             border: 8px solid #000;
-            box-shadow: 0 0 10px rgba(0,0,0,0.5);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5), inset 0 2px 4px rgba(0,0,0,0.7);
             overflow: hidden;
+        }
+        .mobile-frame::after {
+            content: '';
+            position: absolute;
+            top: -2%;
+            left: -10%;
+            width: 120%;
+            height: 120%;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0) 50%);
+            transform: rotate(20deg);
+            z-index: 4;
+            pointer-events: none;
         }
         .mobile-frame::before {
             content: '';
@@ -350,7 +460,7 @@
             .about-container { grid-template-columns: 1fr; }
             .about-visuals { order: 1; margin-bottom: 2rem; }
             .about-text { order: 2; margin-top: 0; }
-            .about-image { max-width: 200px; }
+            .about-slider-wrapper { width: clamp(180px, 35vw, 240px); height: clamp(180px, 35vw, 240px); }
             .achievements-list { max-width: 90%; }
             .achievements-list li img { width: 80px; height: 80px; }
             .contact-links-list { gap: 1rem; }
@@ -384,6 +494,9 @@
             .contact-links-list li { flex-basis: 100%; justify-content: center; min-width: unset; }
         }
 
+        .cta-button, .link-button, .menu-toggle {
+        }
+
         @media (max-width: 480px) {
             html { font-size: 14px; }
             .profile-pic { width: 150px; height: 150px; border-width: 4px; border-radius: 20px; }
@@ -399,11 +512,47 @@
             .contact-links-list li { margin-left: 0; margin-right: 0; justify-content: flex-start; }
             .hero-text-content h1 { font-size: clamp(1.8rem, 7vw, 2.5rem); }
             .about-container { grid-template-columns: 1fr; }
-            .about-image { max-width: 150px; }
+            .about-slider-wrapper { width: 150px; height: 150px; border-width: 4px; border-radius: 20px; }
             .mobile-frame {
                 padding-top: 177.78%; /* 9:16 aspect ratio for smaller screens */
             }
         }
+
+        /* --- Magical Cursor --- */
+        body * { cursor: none; }
+        #magic-cursor {
+            position: fixed;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            top: 0;
+            left: 0;
+            opacity: 0;
+            transition: transform 0.2s ease-out, opacity 0.3s ease;
+        }
+        #magic-cursor::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 8px;
+            height: 40px; /* Stick length */
+            background: linear-gradient(180deg, var(--grad-color-1), var(--grad-color-2), var(--grad-color-3));
+            border-radius: 4px;
+            transform: translate(-50%, -50%);
+            box-shadow: 0 0 10px var(--glow-color), 0 0 20px var(--glow-color);
+        }
+        #magic-cursor.clicked::before {
+            animation: click-effect 0.4s ease-out;
+        }
+        @keyframes click-effect {
+            0% { box-shadow: 0 0 10px var(--glow-color), 0 0 20px var(--glow-color); transform: translate(-50%, -50%) scale(1); }
+            50% { box-shadow: 0 0 20px var(--highlight-glow-color), 0 0 40px var(--highlight-glow-color); transform: translate(-50%, -50%) scale(1.5); }
+            100% { box-shadow: 0 0 10px var(--glow-color), 0 0 20px var(--glow-color); transform: translate(-50%, -50%) scale(1); }
+        }
+
     </style>
 </head>
 <body>
@@ -423,8 +572,8 @@
                 <li><a href="#hero">Home</a></li>
                 <li><a href="#about">About</a></li>
                 <li><a href="#skills">Skills</a></li>
-                <li><a href="#experience">Experience</a></li>
                 <li><a href="#projects">Projects</a></li>
+                <li><a href="#experience">Experience</a></li>
                 <li><a href="#achievements">Achievements</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
@@ -435,10 +584,11 @@
     <main>
         <!-- Hero Section -->
         <section id="hero" class="hero-section">
+             <div id="vanta-hero"></div>
              <div class="hero-content animate-on-scroll fade-in">
                 <div class="hero-text-content">
                     <h1>Salauddin Majumder</h1>
-                    <p class="subtitle">Educator | Mobile App Developer | AI & Programming Enthusiast</p>
+                    <p class="subtitle">Mobile App Developer | AI, ML & Programming Educator | Writer</p>
                     <div class="social-links">
                        <!-- !!! REPLACE '#' with actual URLs !!! -->
                        <a href="https://www.facebook.com/salauddin.majumder.1232/" target="_blank" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
@@ -449,7 +599,7 @@
                 </div>
                 <div class="hero-image-container">
                     <!-- !!! REPLACE 'your-photo.jpg' with your actual photo path !!! -->
-                    <img src="profile.png" alt="Salauddin Majumder" class="profile-pic">
+                    <img src="profile2.jpg" alt="Salauddin Majumder" class="profile-pic">
                 </div>
             </div>
              <div class="scroll-down-indicator">
@@ -458,201 +608,280 @@
         </section>
 
         <!-- About Section -->
-        <section id="about" class="content-section">
-            <div class="section-title-wrapper">
-                <h2 class="section-title animate-on-scroll fade-in-up">About Me</h2>
-            </div>
-            <div class="about-container animate-on-scroll">
-                <div class="about-text">
-                    <p>Passionate <span class="highlight-glow">Flutter App Developer</span> and founder of Monozog, with hands-on experience in building intelligent, cross-platform mobile apps. Specialized in integrating <span class="highlight-glow">AI</span> with Flutter for scalable,  <span class="highlight-glow">multilingual</span> solutions. Developed and managed micro-credential courses at DIU’s 4IR Research Cell, blending education with cutting-edge technology. Demonstrated leadership in app development, research, and innovative course design. Strong background in  <span class="highlight-glow">programming, UI/UX, and data-driven product strategy.</span></p>
-                    <p>Currently in Last Semester in Bachelor of Science in Computer Science & Engineering at Daffodil International University.</p>
-                     <a href="#" target="_blank" class="cta-button">Download CV</a>
+        <section id="about">
+            <div id="vanta-about"></div>
+            <div class="content-section">
+                <div class="section-title-wrapper">
+                    <h2 class="section-title animate-on-scroll fade-in-up">About Me</h2>
                 </div>
-                <div class="about-visuals">
-                     <img src="s2.jpg" alt="Decorative image related to Salauddin" class="about-image">
+                <div class="about-container animate-on-scroll">
+                    <div class="about-text">
+                        <p>Passionate <span class="highlight-glow">Flutter App Developer</span> and teacher at Monozog, with hands-on experience in building intelligent, cross-platform mobile apps. Specialized in integrating <span class="highlight-glow">AI</span> with Flutter for scalable,  <span class="highlight-glow">multilingual</span> solutions like <span class="highlight-glow">UkilGiri:</span>  Bangladesh's First Ai Law Assistant and <span class="highlight-glow">QuizInfinite:</span> Ai based custom quiz creation in more than 53 languages. Demonstrated leadership in app development, research, and innovative course design. Strong background in  <span class="highlight-glow">programming, UI/UX,</span> and <span class="highlight-glow">data-driven product</span> strategy. Developed '<span class="highlight-glow">TriVashi:</span> An End-to-End Regional Bangla Speech to Standard Bangla Speech Translation System' as a thesis project for my CSE degree, utilizing AI, ML, and NLP.</p>
+                        <p>Persued Bachelor of Science in <span class="highlight-glow">Computer Science & Engineering</span> from Daffodil International University.</p>
+                         <a href="https://drive.google.com/uc?export=download&id=1bB0LHVuV1J63ySIq2LXDvGy7JheCN1VJ" target="_blank" class="cta-button">Download CV</a>
+                    </div>
+                    <div class="about-visuals">
+                         <div class="about-slider-wrapper">
+                            <div class="project-image-slider">
+                                <div class="project-image"><img src="s2.jpg" alt="About Me Image 1"></div>
+                                <div class="project-image"><img src="s3.jpg" alt="About Me Image 2"></div>
+                                <div class="project-image"><img src="s4.jpg" alt="About Me Image 3"></div>
+                            </div>
+                            <div class="slider-dots"></div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
 
         <!-- Skills Section -->
-        <section id="skills" class="content-section alt-bg">
-            <div class="section-title-wrapper">
-                 <h2 class="section-title animate-on-scroll fade-in-up">Core Qualifications</h2>
-            </div>
-            <div class="skills-container">
-                 <div class="skill-category animate-on-scroll fade-in"><h3><i class="fas fa-brain icon"></i> AI & Machine Learning</h3><ul class="skill-items-list"><li class="skill-item"><i class="fas fa-robot skill-icon"></i> <span>Machine Learning</span></li><li class="skill-item"><i class="fas fa-lightbulb skill-icon"></i> <span>Artificial Intelligence</span></li><li class="skill-item"><i class="fas fa-chart-bar skill-icon"></i> <span>Data Analysis</span></li></ul></div>
-                 <div class="skill-category animate-on-scroll fade-in"><h3><i class="fas fa-code icon"></i> Programming Languages</h3><ul class="skill-items-list"><li class="skill-item"><i class="fab fa-cuttlefish skill-icon"></i> <span>C / C++</span></li><li class="skill-item"><i class="fab fa-python skill-icon"></i> <span>Python</span></li><li class="skill-item"><i class="fab fa-js-square skill-icon"></i> <span>JavaScript</span></li><li class="skill-item"><i class="fas fa-mobile-alt skill-icon"></i> <span>Dart</span></li></ul></div>
-                 <div class="skill-category animate-on-scroll fade-in"><h3><i class="fas fa-laptop-code icon"></i> Development</h3><ul class="skill-items-list"><li class="skill-item"><i class="fas fa-globe skill-icon"></i> <span>Web Basics</span></li><li class="skill-item"><i class="fab fa-android skill-icon"></i> <span>Mobile App (Flutter)</span></li></ul></div>
-                 <div class="skill-category animate-on-scroll fade-in"><h3><i class="fas fa-palette icon"></i> Design & Video</h3><ul class="skill-items-list"><li class="skill-item"><i class="fas fa-pencil-ruler skill-icon"></i> <span>Photoshop/Illustrator</span></li><li class="skill-item"><i class="fab fa-figma skill-icon"></i> <span>Canva / Figma</span></li><li class="skill-item"><i class="fas fa-cube skill-icon"></i> <span>Blender</span></li><li class="skill-item"><i class="fas fa-film skill-icon"></i> <span>After Effects</span></li></ul></div>
-                 <div class="skill-category animate-on-scroll fade-in"><h3><i class="fas fa-comments icon"></i> Soft Skills</h3><ul class="skill-items-list"><li class="skill-item"><i class="fas fa-microphone-alt skill-icon"></i> <span>Public Speaking</span></li><li class="skill-item"><i class="fas fa-users skill-icon"></i> <span>Leadership</span></li><li class="skill-item"><i class="fas fa-chalkboard-teacher skill-icon"></i> <span>Teaching</span></li><li class="skill-item"><i class="fas fa-search skill-icon"></i> <span>Research</span></li><li class="skill-item"><i class="fas fa-keyboard skill-icon"></i> <span>Typing: 80+ wpm</span></li></ul></div>
-                <div class="skill-category animate-on-scroll fade-in"><h3><i class="fas fa-magic icon"></i> Content Creation</h3><ul class="skill-items-list"><li class="skill-item"><i class="fas fa-video skill-icon"></i> <span> Video Making With AI</span></li><li class="skill-item"><i class="fas fa-music skill-icon"></i> <span> Music Making With AI</span></li><li class="skill-item"><i class="fas fa-bullhorn skill-icon"></i> <span> Promotional AI Video</span></li></ul></div>
-            </div>
-        </section>
-
-        <!-- Experience Section -->
-        <!-- Experience Section -->
-        <section id="experience" class="content-section">
-            <div class="section-title-wrapper">
-                <h2 class="section-title animate-on-scroll fade-in-up">Experience</h2>
-            </div>
-            <div class="experience-list">
-                <div class="experience-item animate-on-scroll fade-in">
-                    <div class="exp-header">
-                        <h3 class="exp-title">Content Creator <span class="company">- Facebook</span></h3>
-                        <span class="exp-date-range">June 2025 - Present</span>
-                    </div>
-                    <p class="exp-description">Got more than 3.3 Million Views in 2 weeks. Achieved more than 9K followers in 2 weeks.</p>
+        <section id="skills" class="alt-bg">
+            <div id="vanta-skills"></div>
+            <div class="content-section">
+                <div class="section-title-wrapper">
+                     <h2 class="section-title animate-on-scroll fade-in-up">Core Qualifications</h2>
                 </div>
-                <div class="experience-item animate-on-scroll fade-in">
-                    <div class="exp-header">
-                        <h3 class="exp-title">Founder & Teacher <span class="company">- Monozog.com</span></h3>
-                        <span class="exp-date-range">June 2023 - Present</span>
-                    </div>
-                    <p class="exp-description">Managed structure & execution. Taught C Programming & Data Structures (1000+ students). Video design & editing.</p>
-                </div>
-                <div class="experience-item animate-on-scroll fade-in">
-                    <div class="exp-header">
-                        <h3 class="exp-title">Undergraduate Researcher <span class="company">- 4IR Research Cell, DIU</span></h3>
-                        <span class="exp-date-range">July 2023 - July 2024</span>
-                    </div>
-                    <p class="exp-description">Authored book chapter (BME & AI). Supervised 17+ micro-credential ideas. 2 RIC Projects accepted. Banner design.</p>
-                </div>
-                <div class="experience-item animate-on-scroll fade-in">
-                    <div class="exp-header">
-                        <h3 class="exp-title">Campus Lead <span class="company">- STEMX365</span></h3>
-                        <span class="exp-date-range">Jan 2023 - June 2024</span>
-                    </div>
-                    <p class="exp-description">Managed on-campus marketing activities.</p>
-                </div>
-                <div class="experience-item animate-on-scroll fade-in">
-                    <div class="exp-header">
-                        <h3 class="exp-title">Researcher <span class="company">- FAB LAB, DIU</span></h3>
-                        <span class="exp-date-range">July 2022 - Dec 2022</span>
-                    </div>
-                    <p class="exp-description">Collected, analyzed, interpreted research data using stats & visualization.</p>
-                </div>
-                <div class="experience-item animate-on-scroll fade-in">
-                    <div class="exp-header">
-                        <h3 class="exp-title">Interviewer & Host <span class="company">- Art of Living DIU</span></h3>
-                        <span class="exp-date-range">Jan 2022 - June 2022</span>
-                    </div>
-                    <p class="exp-description">Interviewed founders (Rokomari) & scientists (Sonali Bag inventor).</p>
-                </div>
+<div class="skills-container">
+    <div class="skill-category animate-on-scroll fade-in">
+        <h3><i class="fas fa-code icon"></i> Programming Languages</h3>
+        <ul class="skill-items-list">
+            <li class="skill-item"><i class="fas fa-terminal skill-icon"></i> <span>Dart</span></li>
+            <li class="skill-item"><i class="fab fa-python skill-icon"></i> <span>Python</span></li>
+            <li class="skill-item"><i class="fab fa-js-square skill-icon"></i> <span>JavaScript</span></li>
+            <li class="skill-item"><i class="fas fa-desktop skill-icon"></i> <span>C / C++</span></li>
+        </ul>
+    </div>
+    <div class="skill-category animate-on-scroll fade-in">
+        <h3><i class="fas fa-mobile-alt icon"></i> Mobile Application Development</h3>
+        <ul class="skill-items-list">
+            <li class="skill-item"><i class="fab fa-dev skill-icon"></i> <span>Flutter</span></li>
+            <li class="skill-item"><i class="fas fa-server skill-icon"></i> <span>RESTAPI</span></li>
+            <li class="skill-item"><i class="fas fa-fire skill-icon"></i> <span>Firebase Integration</span></li>
+            <li class="skill-item"><i class="fas fa-cube skill-icon"></i> <span>3rd Party SDK integration</span></li>
+        </ul>
+    </div>
+    <div class="skill-category animate-on-scroll fade-in">
+        <h3><i class="fas fa-brain icon"></i> AI & ML</h3>
+        <ul class="skill-items-list">
+            <li class="skill-item"><i class="fas fa-robot skill-icon"></i> <span>Custom Machine Learning Model</span></li>
+            <li class="skill-item"><i class="fas fa-sitemap skill-icon"></i> <span>Artificial Intelligence Integration</span></li>
+            <li class="skill-item"><i class="fas fa-chart-bar skill-icon"></i> <span>Data Analysis</span></li>
+            <li class="skill-item"><i class="fas fa-language skill-icon"></i> <span>NLP</span></li>
+        </ul>
+    </div>
+    <div class="skill-category animate-on-scroll fade-in">
+        <h3><i class="fas fa-palette icon"></i> Design & Video</h3>
+        <ul class="skill-items-list">
+            <li class="skill-item"><i class="fas fa-image skill-icon"></i> <span>Photoshop/Illustrator</span></li>
+            <li class="skill-item"><i class="fab fa-figma skill-icon"></i> <span>Canva / Figma</span></li>
+            <li class="skill-item"><i class="fas fa-cube skill-icon"></i> <span>Blender</span></li>
+            <li class="skill-item"><i class="fas fa-film skill-icon"></i> <span>After Effects</span></li>
+        </ul>
+    </div>
+    <div class="skill-category animate-on-scroll fade-in">
+        <h3><i class="fas fa-comments icon"></i> Soft Skills</h3>
+        <ul class="skill-items-list">
+            <li class="skill-item"><i class="fas fa-microphone-alt skill-icon"></i> <span>Public Speaking</span></li>
+            <li class="skill-item"><i class="fas fa-users skill-icon"></i> <span>Leadership</span></li>
+            <li class="skill-item"><i class="fas fa-chalkboard-teacher skill-icon"></i> <span>Teaching</span></li>
+            <li class="skill-item"><i class="fas fa-search skill-icon"></i> <span>Research</span></li>
+            <li class="skill-item"><i class="fas fa-keyboard skill-icon"></i> <span>Typing: 80+ wpm</span></li>
+        </ul>
+    </div>
+    <div class="skill-category animate-on-scroll fade-in">
+        <h3><i class="fas fa-tools icon"></i> Technologies</h3>
+        <ul class="skill-items-list">
+            <li class="skill-item"><i class="fas fa-file-code skill-icon"></i> <span>VS Code</span></li>
+            <li class="skill-item"><i class="fab fa-github skill-icon"></i> <span>Git/GitHub</span></li>
+            <li class="skill-item"><i class="fab fa-android skill-icon"></i> <span>Android Studio</span></li>
+        </ul>
+    </div>
+</div>
             </div>
         </section>
 
         <!-- Projects Section -->
-        <section id="projects" class="content-section alt-bg">
-            <div class="section-title-wrapper">
-                <h2 class="section-title animate-on-scroll fade-in-up">Projects</h2>
+        <section id="projects">
+            <div id="vanta-projects"></div>
+            <div class="content-section">
+                <div class="section-title-wrapper">
+                    <h2 class="section-title animate-on-scroll fade-in-up">Projects</h2>
+                </div>
+                <div class="projects-container">
+                    <div class="project-card animate-on-scroll pop-in">
+                        <div class="mobile-frame">
+                            <div class="project-image-slider">
+                                <div class="project-image"><img src="1.jpg" alt="AI Quiz Maker Image 1"></div>
+                                <div class="project-image"><img src="2.jpg" alt="AI Quiz Maker Image 2"></div>
+                                <div class="project-image"><img src="3.jpg" alt="AI Quiz Maker Image 2"></div>
+                                <div class="project-image"><img src="4.jpg" alt="AI Quiz Maker Image 2"></div>
+                                <div class="project-image"><img src="5.jpg" alt="AI Quiz Maker Image 2"></div>
+                            </div>
+                            <div class="slider-dots"></div>
+                        </div>
+                        <div class="project-card-inner">
+                            <h3>UkilGiri<br><div class="project-tags"><span>Mobile App</span></div></h3>
+                            <p>Built a multilingual quiz app using Flutter, supporting 50+ languages and 4+ question types (MCQ, True/False, Fill in the Blanks, Descriptive). Features real-time quiz generation from user input, Firebase authentication, and a responsive UI.</p>
+                            <div class="project-tags"><span>Flutter</span><span>Firebase</span><span>AI Integration</span></div>
+                            <div class="project-links"><a href="https://github.com/salauddin4227/AI-Quiz-Maker" target="_blank" class="link-button">View Project</a></div>
+                        </div>
+                    </div>
+                     <div class="project-card animate-on-scroll pop-in">
+                        <div class="mobile-frame">
+                            <div class="project-image-slider">
+                                <div class="project-image"><img src="q1.jpg" alt="AI Quiz Maker Image 1"></div>
+                                <div class="project-image"><img src="q2.jpg" alt="AI Quiz Maker Image 2"></div>
+                                <div class="project-image"><img src="q3.jpg" alt="AI Quiz Maker Image 2"></div>
+                                <div class="project-image"><img src="q4.jpg" alt="AI Quiz Maker Image 2"></div>
+                                <div class="project-image"><img src="q5.jpg" alt="AI Quiz Maker Image 2"></div>
+                                <div class="project-image"><img src="q6.jpg" alt="AI Quiz Maker Image 1"></div>
+                                <div class="project-image"><img src="q7.jpg" alt="AI Quiz Maker Image 2"></div>
+                                <div class="project-image"><img src="q8.jpg" alt="AI Quiz Maker Image 2"></div>
+                                <div class="project-image"><img src="q9.jpg" alt="AI Quiz Maker Image 2"></div>
+                                <div class="project-image"><img src="q10.jpg" alt="AI Quiz Maker Image 2"></div>
+                            </div>
+                            <div class="slider-dots"></div>
+                        </div>
+                        <div class="project-card-inner">
+                            <h3>QuizInfinite<br><div class="project-tags"><span>Mobile App</span></div></h3>
+                            <p>Built a multilingual quiz app using Flutter, supporting 50+ languages and 4+ question types (MCQ, True/False, Fill in the Blanks, Descriptive). Features real-time quiz generation from user input, Firebase authentication, and a responsive UI.</p>
+                            <div class="project-tags"><span>Flutter</span><span>Firebase</span><span>AI Integration</span></div>
+                            <div class="project-links"><a href="https://github.com/salauddin4227/AI-Quiz-Maker" target="_blank" class="link-button">View Project</a></div>
+                        </div>
+                    </div>
+
+                                    <div class="project-card animate-on-scroll pop-in">
+                        <div class="mobile-frame">
+                            <div class="project-image-slider">
+                                <div class="project-image"><img src="n1.jpg" alt="AI Quiz Maker Image 1"></div>
+                                <div class="project-image"><img src="n2.jpg" alt="AI Quiz Maker Image 2"></div>
+                                <div class="project-image"><img src="n3.jpg" alt="AI Quiz Maker Image 2"></div>
+                                <div class="project-image"><img src="n4.jpg" alt="AI Quiz Maker Image 2"></div>
+                                <div class="project-image"><img src="n5.jpg" alt="AI Quiz Maker Image 2"></div>
+                                <div class="project-image"><img src="n6.jpg" alt="AI Quiz Maker Image 2"></div>
+                                <div class="project-image"><img src="n7.jpg" alt="AI Quiz Maker Image 2"></div>
+                                <div class="project-image"><img src="n8.jpg" alt="AI Quiz Maker Image 2"></div>
+                                <div class="project-image"><img src="n9.jpg" alt="AI Quiz Maker Image 2"></div>
+                                <div class="project-image"><img src="n10.jpg" alt="AI Quiz Maker Image 2"></div>
+                            </div>
+                            <div class="slider-dots"></div>
+                        </div>
+                        <div class="project-card-inner">
+                            <h3>Data Collector<br><div class="project-tags"><span>Mobile App</span></div></h3>
+                            
+                            <p>Built a multilingual quiz app using Flutter, supporting 50+ languages and 4+ question types (MCQ, True/False, Fill in the Blanks, Descriptive). Features real-time quiz generation from user input, Firebase authentication, and a responsive UI.</p>
+                            <div class="project-tags"><span>Flutter</span><span>Firebase</span><span>AI Integration</span></div>
+                            <div class="project-links"><a href="https://github.com/salauddin4227/AI-Quiz-Maker" target="_blank" class="link-button">View Project</a></div>
+                        </div>
+                    </div>
+
+                    <div class="project-card animate-on-scroll pop-in">
+                        <div class="mobile-frame">
+                            <div class="project-image-slider">
+                                <div class="project-image"><img src="p3.png" alt="AI in BME Book Chapter Image 1"></div>
+                                <div class="project-image"><img src="p5.png" alt="AI in BME Book Chapter Image 2"></div>
+                                <div class="project-image"><img src="p6.png" alt="AI in BME Book Chapter Image 2"></div>
+                            </div>
+                            <div class="slider-dots"></div>
+                        </div>
+                        <div class="project-card-inner">
+                            <h3>AI in BME Book Chapter</h3>
+                            <p>Contributed chapter on AI applications in Biomedical Engineering.</p>
+                            <div class="project-tags"><span>Research</span><span>Writing</span><span>AI</span><span>BME</span></div>
+                            <div class="project-links"><a href="https://www.rokomari.com/book/413679/baboharik-o-gobeshonay-biomedical-engineering" target="_blank" class="link-button">View Project</a></div>
+                        </div>
+                    </div>
+                    <div class="project-card animate-on-scroll pop-in">
+                        <div class="mobile-frame">
+                            <div class="project-image-slider">
+                                <div class="project-image"><img src="p4.png" alt="Micro-Credential Development Image 1"></div>
+                                <div class="project-image"><img src="p4.png" alt="Micro-Credential Development Image 2"></div>
+                            </div>
+                            <div class="slider-dots"></div>
+                        </div>
+                        <div class="project-card-inner">
+                            <h3>Micro-Credential Dev</h3>
+                            <p>Supervised ideation for 17+ micro-credential courses at DIU 4IR Cell.</p>
+                            <div class="project-tags"><span>Course Design</span><span>Leadership</span></div>
+                            <div class="project-links"><a href="#" target="_blank" class="link-button" title="Conceptual project - No direct link">View Project</a></div>
+                        </div>
+                    </div>
+                    <div class="project-card animate-on-scroll pop-in">
+                        <div class="mobile-frame">
+                            <div class="project-image-slider">
+                                <div class="project-image"><img src="p2.jpg" alt="Monozog Platform Image 1"></div>
+                                <div class="project-image"><img src="p2.jpg" alt="Monozog Platform Image 2"></div>
+                            </div>
+                            <div class="slider-dots"></div>
+                        </div>
+                        <div class="project-card-inner">
+                            <h3>Monozog Platform</h3>
+                            <p>Online platform for C/Data Structures, reaching 1000+ students.</p>
+                            <div class="project-tags"><span>Teaching</span><span>Video</span><span>Platform</span></div>
+                            <div class="project-links"><a href="https://www.facebook.com/monozog" target="_blank" class="link-button">View Project</a></div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="projects-container">
-                <div class="project-card animate-on-scroll pop-in">
-                    <div class="mobile-frame">
-                        <div class="project-image-slider">
-                            <div class="project-image"><img src="1.jpg" alt="AI Quiz Maker Image 1"></div>
-                            <div class="project-image"><img src="2.jpg" alt="AI Quiz Maker Image 2"></div>
-                            <div class="project-image"><img src="3.jpg" alt="AI Quiz Maker Image 2"></div>
-                            <div class="project-image"><img src="4.jpg" alt="AI Quiz Maker Image 2"></div>
-                            <div class="project-image"><img src="5.jpg" alt="AI Quiz Maker Image 2"></div>
-                        </div>
-                        <div class="slider-dots"></div>
-                    </div>
-                    <div class="project-card-inner">
-                        <h3>UkilGiri (Flutter)</h3>
-                        <p>Built a multilingual quiz app using Flutter, supporting 50+ languages and 4+ question types (MCQ, True/False, Fill in the Blanks, Descriptive). Features real-time quiz generation from user input, Firebase authentication, and a responsive UI.</p>
-                        <div class="project-tags"><span>Flutter</span><span>Firebase</span><span>AI Integration</span></div>
-                        <div class="project-links"><a href="https://github.com/salauddin4227/AI-Quiz-Maker" target="_blank" class="link-button">View Project</a></div>
-                    </div>
-                </div>
-                                <div class="project-card animate-on-scroll pop-in">
-                    <div class="mobile-frame">
-                        <div class="project-image-slider">
-                            <div class="project-image"><img src="1.jpg" alt="AI Quiz Maker Image 1"></div>
-                            <div class="project-image"><img src="2.jpg" alt="AI Quiz Maker Image 2"></div>
-                            <div class="project-image"><img src="3.jpg" alt="AI Quiz Maker Image 2"></div>
-                            <div class="project-image"><img src="4.jpg" alt="AI Quiz Maker Image 2"></div>
-                            <div class="project-image"><img src="5.jpg" alt="AI Quiz Maker Image 2"></div>
-                        </div>
-                        <div class="slider-dots"></div>
-                    </div>
-                    <div class="project-card-inner">
-                        <h3>AI Quiz Maker (Flutter)</h3>
-                        <p>Built a multilingual quiz app using Flutter, supporting 50+ languages and 4+ question types (MCQ, True/False, Fill in the Blanks, Descriptive). Features real-time quiz generation from user input, Firebase authentication, and a responsive UI.</p>
-                        <div class="project-tags"><span>Flutter</span><span>Firebase</span><span>AI Integration</span></div>
-                        <div class="project-links"><a href="https://github.com/salauddin4227/AI-Quiz-Maker" target="_blank" class="link-button">View Project</a></div>
-                    </div>
-                </div>
+        </section>
 
-                                <div class="project-card animate-on-scroll pop-in">
-                    <div class="mobile-frame">
-                        <div class="project-image-slider">
-                            <div class="project-image"><img src="1.jpg" alt="AI Quiz Maker Image 1"></div>
-                            <div class="project-image"><img src="2.jpg" alt="AI Quiz Maker Image 2"></div>
-                            <div class="project-image"><img src="3.jpg" alt="AI Quiz Maker Image 2"></div>
-                            <div class="project-image"><img src="4.jpg" alt="AI Quiz Maker Image 2"></div>
-                            <div class="project-image"><img src="5.jpg" alt="AI Quiz Maker Image 2"></div>
-                        </div>
-                        <div class="slider-dots"></div>
-                    </div>
-                    <div class="project-card-inner">
-                        <h3>AI Quiz Maker (Flutter)</h3>
-                        <p>Built a multilingual quiz app using Flutter, supporting 50+ languages and 4+ question types (MCQ, True/False, Fill in the Blanks, Descriptive). Features real-time quiz generation from user input, Firebase authentication, and a responsive UI.</p>
-                        <div class="project-tags"><span>Flutter</span><span>Firebase</span><span>AI Integration</span></div>
-                        <div class="project-links"><a href="https://github.com/salauddin4227/AI-Quiz-Maker" target="_blank" class="link-button">View Project</a></div>
-                    </div>
+        <!-- Experience Section -->
+        <section id="experience" class="alt-bg">
+            <div id="vanta-experience"></div>
+            <div class="content-section">
+                <div class="section-title-wrapper">
+                    <h2 class="section-title animate-on-scroll fade-in-up">Experience</h2>
                 </div>
-
-                <div class="project-card animate-on-scroll pop-in">
-                    <div class="mobile-frame">
-                        <div class="project-image-slider">
-                            <div class="project-image"><img src="p3.jpg" alt="AI in BME Book Chapter Image 1"></div>
-                            <div class="project-image"><img src="p3.jpg" alt="AI in BME Book Chapter Image 2"></div>
+                <div class="experience-list">
+                    <div class="experience-item animate-on-scroll fade-in">
+                        <div class="exp-header">
+                            <h3 class="exp-title">Content Creator <span class="company">- Facebook</span></h3>
+                            <span class="exp-date-range">June 2025 - Present</span>
                         </div>
-                        <div class="slider-dots"></div>
+                        <p class="exp-description">Got more than 3.3 Million Views in 2 weeks. Achieved more than 9K followers in 2 weeks.</p>
                     </div>
-                    <div class="project-card-inner">
-                        <h3>AI in BME Book Chapter</h3>
-                        <p>Contributed chapter on AI applications in Biomedical Engineering.</p>
-                        <div class="project-tags"><span>Research</span><span>Writing</span><span>AI</span><span>BME</span></div>
-                        <div class="project-links"><a href="https://www.rokomari.com/book/413679/baboharik-o-gobeshonay-biomedical-engineering" target="_blank" class="link-button">View Project</a></div>
-                    </div>
-                </div>
-                <div class="project-card animate-on-scroll pop-in">
-                    <div class="mobile-frame">
-                        <div class="project-image-slider">
-                            <div class="project-image"><img src="p4.png" alt="Micro-Credential Development Image 1"></div>
-                            <div class="project-image"><img src="p4.png" alt="Micro-Credential Development Image 2"></div>
+                    <div class="experience-item animate-on-scroll fade-in">
+                        <div class="exp-header">
+                            <h3 class="exp-title">Founder & Teacher <span class="company">- Monozog.com</span></h3>
+                            <span class="exp-date-range">June 2023 - Present</span>
                         </div>
-                        <div class="slider-dots"></div>
+                        <p class="exp-description">Managed structure & execution. Taught C Programming & Data Structures (1000+ students). Video design & editing.</p>
                     </div>
-                    <div class="project-card-inner">
-                        <h3>Micro-Credential Dev</h3>
-                        <p>Supervised ideation for 17+ micro-credential courses at DIU 4IR Cell.</p>
-                        <div class="project-tags"><span>Course Design</span><span>Leadership</span></div>
-                        <div class="project-links"><a href="#" target="_blank" class="link-button" title="Conceptual project - No direct link">View Project</a></div>
-                    </div>
-                </div>
-                <div class="project-card animate-on-scroll pop-in">
-                    <div class="mobile-frame">
-                        <div class="project-image-slider">
-                            <div class="project-image"><img src="p2.jpg" alt="Monozog Platform Image 1"></div>
-                            <div class="project-image"><img src="p2.jpg" alt="Monozog Platform Image 2"></div>
+                    <div class="experience-item animate-on-scroll fade-in">
+                        <div class="exp-header">
+                            <h3 class="exp-title">Undergraduate Researcher <span class="company">- 4IR Research Cell, DIU</span></h3>
+                            <span class="exp-date-range">July 2023 - July 2024</span>
                         </div>
-                        <div class="slider-dots"></div>
+                        <p class="exp-description">Authored book chapter (BME & AI). Supervised 17+ micro-credential ideas. 2 RIC Projects accepted. Banner design.</p>
                     </div>
-                    <div class="project-card-inner">
-                        <h3>Monozog Platform</h3>
-                        <p>Online platform for C/Data Structures, reaching 1000+ students.</p>
-                        <div class="project-tags"><span>Teaching</span><span>Video</span><span>Platform</span></div>
-                        <div class="project-links"><a href="https://www.facebook.com/monozog" target="_blank" class="link-button">View Project</a></div>
+                    <div class="experience-item animate-on-scroll fade-in">
+                        <div class="exp-header">
+                            <h3 class="exp-title">Campus Lead <span class="company">- STEMX365</span></h3>
+                            <span class="exp-date-range">Jan 2023 - June 2024</span>
+                        </div>
+                        <p class="exp-description">Managed on-campus marketing activities.</p>
+                    </div>
+                    <div class="experience-item animate-on-scroll fade-in">
+                        <div class="exp-header">
+                            <h3 class="exp-title">Researcher <span class="company">- FAB LAB, DIU</span></h3>
+                            <span class="exp-date-range">July 2022 - Dec 2022</span>
+                        </div>
+                        <p class="exp-description">Collected, analyzed, interpreted research data using stats & visualization.</p>
+                    </div>
+                    <div class="experience-item animate-on-scroll fade-in">
+                        <div class="exp-header">
+                            <h3 class="exp-title">Interviewer & Host <span class="company">- Art of Living DIU</span></h3>
+                            <span class="exp-date-range">Jan 2022 - June 2022</span>
+                        </div>
+                        <p class="exp-description">Interviewed founders (Rokomari) & scientists (Sonali Bag inventor).</p>
                     </div>
                 </div>
             </div>
         </section>
 
          <!-- Achievements Section -->
-        <section id="achievements" class="content-section">
+        <section id="achievements" class="full-width-content-section">
+            <div id="vanta-achievements"></div>
              <div class="section-title-wrapper">
                  <h2 class="section-title animate-on-scroll fade-in-up">Achievements</h2>
              </div>
@@ -666,7 +895,8 @@
         </section>
 
         <!-- Contact Section -->
-        <section id="contact" class="content-section alt-bg">
+        <section id="contact" class="full-width-content-section alt-bg">
+            <div id="vanta-contact"></div>
             <div class="section-title-wrapper">
                 <h2 class="section-title animate-on-scroll fade-in-up">Get In Touch</h2>
             </div>
@@ -699,6 +929,111 @@
     <script>
         // PASTE THE PREVIOUS (UNCHANGED) JAVASCRIPT CODE HERE
          document.addEventListener('DOMContentLoaded', () => {
+
+            // --- Vanta.js Hero Background ---
+            VANTA.FOG({
+                el: "#vanta-hero",
+                mouseControls: true,
+                touchControls: true,
+                gyroControls: false,
+                minHeight: 200.00,
+                minWidth: 200.00,
+                highlightColor: 0x00ddff,
+                midtoneColor: 0x0077cc,
+                lowlightColor: 0x162447,
+                baseColor: 0x1a1a2e,
+                blurFactor: 0.60,
+                speed: 1.20,
+                zoom: 0.80
+            });
+            VANTA.NET({
+                el: "#vanta-about",
+                mouseControls: true,
+                touchControls: true,
+                gyroControls: false,
+                minHeight: 200.00,
+                minWidth: 200.00,
+                scale: 1.00,
+                scaleMobile: 1.00,
+                color: 0x333333,
+                backgroundColor: 0x1a1a2e,
+                points: 10.00,
+                maxDistance: 20.00,
+                spacing: 15.00
+            })
+            VANTA.CELLS({
+                el: "#vanta-skills",
+                mouseControls: true,
+                touchControls: true,
+                gyroControls: false,
+                minHeight: 200.00,
+                minWidth: 200.00,
+                scale: 1.00,
+                color1: 0x00aaff,
+                color2: 0x162447,
+                size: 2.50,
+                speed: 1.00
+            })
+            VANTA.NET({
+                el: "#vanta-projects",
+                mouseControls: true,
+                touchControls: true,
+                gyroControls: false,
+                minHeight: 200.00,
+                minWidth: 200.00,
+                scale: 1.00,
+                scaleMobile: 1.00,
+                color: 0x162447,
+                backgroundColor: 0x2c2c54,
+                points: 10.00,
+                maxDistance: 20.00,
+                spacing: 15.00
+            })
+            VANTA.NET({
+                el: "#vanta-experience",
+                mouseControls: true,
+                touchControls: true,
+                gyroControls: false,
+                minHeight: 200.00,
+                minWidth: 200.00,
+                scale: 1.00,
+                scaleMobile: 1.00,
+                color: 0x00aaff,
+                backgroundColor: 0x000000,
+                points: 10.00,
+                maxDistance: 20.00,
+                spacing: 15.00
+            })
+            VANTA.NET({
+                el: "#vanta-achievements",
+                mouseControls: true,
+                touchControls: true,
+                gyroControls: false,
+                minHeight: 200.00,
+                minWidth: 200.00,
+                scale: 1.00,
+                scaleMobile: 1.00,
+                color: 0x222222,
+                backgroundColor: 0x1a1a2e,
+                points: 10.00,
+                maxDistance: 20.00,
+                spacing: 15.00
+            })
+            VANTA.NET({
+                el: "#vanta-contact",
+                mouseControls: true,
+                touchControls: true,
+                gyroControls: false,
+                minHeight: 200.00,
+                minWidth: 200.00,
+                scale: 1.00,
+                scaleMobile: 1.00,
+                color: 0x111111,
+                backgroundColor: 0x162447,
+                points: 10.00,
+                maxDistance: 20.00,
+                spacing: 15.00
+            })
 
             // --- Smooth Scrolling for Nav Links ---
             const navLinks = document.querySelectorAll('nav a[href^="#"]');
@@ -836,60 +1171,124 @@
             const yearSpan = document.getElementById('current-year');
             if (yearSpan) { yearSpan.textContent = new Date().getFullYear(); }
 
-            // --- Project Sliders ---
-            const projectCards = document.querySelectorAll('.project-card');
-            projectCards.forEach(card => {
-                const slider = card.querySelector('.project-image-slider');
-                const dotsContainer = card.querySelector('.slider-dots');
+            // --- Generic Slider Setup ---
+            function setupSlider(sliderContainer) {
+                const slider = sliderContainer.querySelector('.project-image-slider');
+                const dotsContainer = sliderContainer.querySelector('.slider-dots');
 
-                if (slider && dotsContainer) {
-                    const slides = slider.querySelectorAll('.project-image');
-                    if (slides.length > 1) {
-                        let currentIndex = 0;
-                        let intervalId;
+                if (!slider || !dotsContainer) return;
 
-                        // Create dots
-                        slides.forEach((_, i) => {
-                            const dot = document.createElement('div');
-                            dot.classList.add('dot');
-                            if (i === 0) dot.classList.add('active');
-                            dot.addEventListener('click', () => {
-                                goToSlide(i);
-                                resetInterval();
-                            });
-                            dotsContainer.appendChild(dot);
-                        });
+                const slides = slider.querySelectorAll('.project-image');
+                if (slides.length <= 1) return;
 
-                        const dots = dotsContainer.querySelectorAll('.dot');
+                let currentIndex = 0;
+                let intervalId;
 
-                        function goToSlide(index) {
-                            currentIndex = index;
-                            slider.style.transform = `translateX(-${currentIndex * 100}%)`;
-                            dots.forEach((dot, i) => {
-                                dot.classList.toggle('active', i === currentIndex);
-                            });
-                        }
+                // Create dots
+                dotsContainer.innerHTML = ''; // Clear any existing dots
+                slides.forEach((_, i) => {
+                    const dot = document.createElement('div');
+                    dot.classList.add('dot');
+                    if (i === 0) dot.classList.add('active');
+                    dot.addEventListener('click', () => {
+                        goToSlide(i);
+                        resetInterval();
+                    });
+                    dotsContainer.appendChild(dot);
+                });
 
-                        function showNextSlide() {
-                            currentIndex = (currentIndex + 1) % slides.length;
-                            goToSlide(currentIndex);
-                        }
+                const dots = dotsContainer.querySelectorAll('.dot');
 
-                        function startInterval() {
-                            intervalId = setInterval(showNextSlide, 3000);
-                        }
+                function goToSlide(index) {
+                    currentIndex = index;
+                    slider.style.transform = `translateX(-${currentIndex * 100}%)`;
+                    dots.forEach((dot, i) => {
+                        dot.classList.toggle('active', i === currentIndex);
+                    });
+                }
 
-                        function resetInterval() {
-                            clearInterval(intervalId);
-                            startInterval();
-                        }
+                function showNextSlide() {
+                    currentIndex = (currentIndex + 1) % slides.length;
+                    goToSlide(currentIndex);
+                }
 
-                        startInterval();
-                    }
+                function startInterval() {
+                    clearInterval(intervalId); // Clear previous interval
+                    intervalId = setInterval(showNextSlide, 3000);
+                }
+
+                function resetInterval() {
+                    startInterval();
+                }
+
+                startInterval();
+            }
+
+            // --- Initialize All Sliders ---
+            document.querySelectorAll('.project-card, .about-visuals').forEach(setupSlider);
+
+        }); // End DOMContentLoaded
+
+        // --- Magical Cursor Logic ---
+        document.addEventListener('DOMContentLoaded', () => {
+            const cursor = document.createElement('div');
+            cursor.id = 'magic-cursor';
+            document.body.appendChild(cursor);
+
+            let lastX = 0;
+            let lastY = 0;
+            let currentX = 0;
+            let currentY = 0;
+            let angle = 0;
+            let isMoving = false;
+            let rafId;
+
+            function updateCursor() {
+                const dx = currentX - lastX;
+                const dy = currentY - lastY;
+
+                if (Math.abs(dx) > 0.1 || Math.abs(dy) > 0.1) {
+                    angle = Math.atan2(dy, dx) * 180 / Math.PI;
+                    cursor.style.transform = `translate(${currentX - 10}px, ${currentY - 10}px) rotate(${angle + 90}deg)`;
+                    lastX = currentX;
+                    lastY = currentY;
+                }
+                rafId = requestAnimationFrame(updateCursor);
+            }
+
+            document.addEventListener('mousemove', (e) => {
+                currentX = e.clientX;
+                currentY = e.clientY;
+                if (!isMoving) {
+                    isMoving = true;
+                    cursor.style.opacity = '1';
+                    lastX = currentX;
+                    lastY = currentY;
+                    cancelAnimationFrame(rafId); // Stop any previous animation frame
+                    updateCursor();
                 }
             });
 
-        }); // End DOMContentLoaded
+            document.addEventListener('mousedown', () => {
+                cursor.classList.add('clicked');
+            });
+
+            document.addEventListener('mouseup', () => {
+                cursor.classList.remove('clicked');
+            });
+
+            document.addEventListener('mouseleave', () => {
+                cursor.style.opacity = '0';
+                isMoving = false;
+                cancelAnimationFrame(rafId);
+            });
+
+             document.addEventListener('mouseenter', () => {
+                // Reset position to avoid jump
+                lastX = currentX;
+                lastY = currentY;
+            });
+        });
     </script>
 
 </body>
