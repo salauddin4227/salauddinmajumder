@@ -313,9 +313,9 @@
 
         /* --- Projects Section --- */
         .projects-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: clamp(1.5rem, 3vw, 2rem); perspective: 1000px; text-align: left; }
-        .project-card { background-color: var(--card-bg); border-radius: 10px; overflow: hidden; border: 1px solid var(--border-color); transition: transform 0.5s ease, box-shadow 0.5s ease; transform-style: preserve-3d; display: flex; flex-direction: column; animation: floatAnimation 4s ease-in-out infinite; }
+        .project-card { background-color: var(--card-bg); border-radius: 10px; overflow: hidden; border: 1px solid var(--border-color); transition: transform 0.5s ease, box-shadow 0.5s ease; display: flex; flex-direction: column; animation: floatAnimation 4s ease-in-out infinite; }
         .project-card-inner { padding: 1.5rem; display: flex; flex-direction: column; width: 100%; text-align: left; flex-grow: 1; }
-        .project-card:hover { transform: rotateY(5deg) rotateX(3deg) scale(1.03); box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4), 0 0 15px var(--glow-color); }
+        .project-card:hover { transform: scale(1.03); box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4), 0 0 15px var(--glow-color); }
         
         .mobile-frame {
             position: relative;
@@ -534,6 +534,27 @@
             .about-slider-wrapper { width: 150px; height: 150px; border-width: 4px; border-radius: 20px; }
             .mobile-frame {
                 padding-top: 177.78%; /* 9:16 aspect ratio for smaller screens */
+            }
+        }
+
+        /* --- Mobile & Touch Device Optimizations --- */
+        @media (hover: none), (pointer: coarse) {
+            .projects-container {
+                perspective: none;
+            }
+            .project-card {
+                animation: none;
+                transform: none !important;
+            }
+            .glass-effect, .glass-background, header {
+                -webkit-backdrop-filter: none;
+                backdrop-filter: none;
+            }
+            .glass-effect, .glass-background {
+                background: rgba(255, 255, 255, 0.08);
+            }
+            header {
+                background-color: rgba(26, 26, 46, 0.95);
             }
         }
 
@@ -954,113 +975,115 @@
     </footer>
 
     <script>
-        // PASTE THE PREVIOUS (UNCHANGED) JAVASCRIPT CODE HERE
-         document.addEventListener('DOMContentLoaded', () => {
+        document.addEventListener('DOMContentLoaded', () => {
+            const isMobile = /Mobi|Android/i.test(navigator.userAgent) || (('ontouchstart' in window) || (navigator.maxTouchPoints > 0) || (navigator.msMaxTouchPoints > 0));
 
-            // --- Vanta.js Hero Background ---
-            VANTA.FOG({
-                el: "#vanta-hero",
-                mouseControls: true,
-                touchControls: true,
-                gyroControls: false,
-                minHeight: 200.00,
-                minWidth: 200.00,
-                highlightColor: 0x00ddff,
-                midtoneColor: 0x0077cc,
-                lowlightColor: 0x162447,
-                baseColor: 0x1a1a2e,
-                blurFactor: 0.60,
-                speed: 1.20,
-                zoom: 0.80
-            });
-            VANTA.NET({
-                el: "#vanta-about",
-                mouseControls: true,
-                touchControls: true,
-                gyroControls: false,
-                minHeight: 200.00,
-                minWidth: 200.00,
-                scale: 1.00,
-                scaleMobile: 1.00,
-                color: 0x333333,
-                backgroundColor: 0x1a1a2e,
-                points: 10.00,
-                maxDistance: 20.00,
-                spacing: 15.00
-            })
-            VANTA.CELLS({
-                el: "#vanta-skills",
-                mouseControls: true,
-                touchControls: true,
-                gyroControls: false,
-                minHeight: 200.00,
-                minWidth: 200.00,
-                scale: 1.00,
-                color1: 0x00aaff,
-                color2: 0x162447,
-                size: 2.50,
-                speed: 1.00
-            })
-            VANTA.NET({
-                el: "#vanta-projects",
-                mouseControls: true,
-                touchControls: true,
-                gyroControls: false,
-                minHeight: 200.00,
-                minWidth: 200.00,
-                scale: 1.00,
-                scaleMobile: 1.00,
-                color: 0x162447,
-                backgroundColor: 0x2c2c54,
-                points: 10.00,
-                maxDistance: 20.00,
-                spacing: 15.00
-            })
-            VANTA.NET({
-                el: "#vanta-experience",
-                mouseControls: true,
-                touchControls: true,
-                gyroControls: false,
-                minHeight: 200.00,
-                minWidth: 200.00,
-                scale: 1.00,
-                scaleMobile: 1.00,
-                color: 0x00aaff,
-                backgroundColor: 0x000000,
-                points: 10.00,
-                maxDistance: 20.00,
-                spacing: 15.00
-            })
-            VANTA.NET({
-                el: "#vanta-achievements",
-                mouseControls: true,
-                touchControls: true,
-                gyroControls: false,
-                minHeight: 200.00,
-                minWidth: 200.00,
-                scale: 1.00,
-                scaleMobile: 1.00,
-                color: 0x222222,
-                backgroundColor: 0x1a1a2e,
-                points: 10.00,
-                maxDistance: 20.00,
-                spacing: 15.00
-            })
-            VANTA.NET({
-                el: "#vanta-contact",
-                mouseControls: true,
-                touchControls: true,
-                gyroControls: false,
-                minHeight: 200.00,
-                minWidth: 200.00,
-                scale: 1.00,
-                scaleMobile: 1.00,
-                color: 0x111111,
-                backgroundColor: 0x162447,
-                points: 10.00,
-                maxDistance: 20.00,
-                spacing: 15.00
-            })
+            // --- Vanta.js Backgrounds (Desktop Only) ---
+            if (!isMobile) {
+                VANTA.FOG({
+                    el: "#vanta-hero",
+                    mouseControls: true,
+                    touchControls: true,
+                    gyroControls: false,
+                    minHeight: 200.00,
+                    minWidth: 200.00,
+                    highlightColor: 0x00ddff,
+                    midtoneColor: 0x0077cc,
+                    lowlightColor: 0x162447,
+                    baseColor: 0x1a1a2e,
+                    blurFactor: 0.60,
+                    speed: 1.20,
+                    zoom: 0.80
+                });
+                VANTA.NET({
+                    el: "#vanta-about",
+                    mouseControls: true,
+                    touchControls: true,
+                    gyroControls: false,
+                    minHeight: 200.00,
+                    minWidth: 200.00,
+                    scale: 1.00,
+                    scaleMobile: 1.00,
+                    color: 0x333333,
+                    backgroundColor: 0x1a1a2e,
+                    points: 10.00,
+                    maxDistance: 20.00,
+                    spacing: 15.00
+                });
+                VANTA.CELLS({
+                    el: "#vanta-skills",
+                    mouseControls: true,
+                    touchControls: true,
+                    gyroControls: false,
+                    minHeight: 200.00,
+                    minWidth: 200.00,
+                    scale: 1.00,
+                    color1: 0x00aaff,
+                    color2: 0x162447,
+                    size: 2.50,
+                    speed: 1.00
+                });
+                VANTA.NET({
+                    el: "#vanta-projects",
+                    mouseControls: true,
+                    touchControls: true,
+                    gyroControls: false,
+                    minHeight: 200.00,
+                    minWidth: 200.00,
+                    scale: 1.00,
+                    scaleMobile: 1.00,
+                    color: 0x162447,
+                    backgroundColor: 0x2c2c54,
+                    points: 10.00,
+                    maxDistance: 20.00,
+                    spacing: 15.00
+                });
+                VANTA.NET({
+                    el: "#vanta-experience",
+                    mouseControls: true,
+                    touchControls: true,
+                    gyroControls: false,
+                    minHeight: 200.00,
+                    minWidth: 200.00,
+                    scale: 1.00,
+                    scaleMobile: 1.00,
+                    color: 0x00aaff,
+                    backgroundColor: 0x000000,
+                    points: 10.00,
+                    maxDistance: 20.00,
+                    spacing: 15.00
+                });
+                VANTA.NET({
+                    el: "#vanta-achievements",
+                    mouseControls: true,
+                    touchControls: true,
+                    gyroControls: false,
+                    minHeight: 200.00,
+                    minWidth: 200.00,
+                    scale: 1.00,
+                    scaleMobile: 1.00,
+                    color: 0x222222,
+                    backgroundColor: 0x1a1a2e,
+                    points: 10.00,
+                    maxDistance: 20.00,
+                    spacing: 15.00
+                });
+                VANTA.NET({
+                    el: "#vanta-contact",
+                    mouseControls: true,
+                    touchControls: true,
+                    gyroControls: false,
+                    minHeight: 200.00,
+                    minWidth: 200.00,
+                    scale: 1.00,
+                    scaleMobile: 1.00,
+                    color: 0x111111,
+                    backgroundColor: 0x162447,
+                    points: 10.00,
+                    maxDistance: 20.00,
+                    spacing: 15.00
+                });
+            }
 
             // --- Smooth Scrolling for Nav Links ---
             const navLinks = document.querySelectorAll('nav a[href^="#"]');
@@ -1254,70 +1277,66 @@
             // --- Initialize All Sliders ---
             document.querySelectorAll('.project-card, .about-visuals').forEach(setupSlider);
 
-        }); // End DOMContentLoaded
+            // --- Magical Cursor Logic (Desktop Only) ---
+            if (!isMobile) {
+                const cursor = document.createElement('div');
+                cursor.id = 'magic-cursor';
+                document.body.appendChild(cursor);
 
-        // --- Magical Cursor Logic ---
-        document.addEventListener('DOMContentLoaded', () => {
-            const isMobile = /Mobi|Android/i.test(navigator.userAgent) || (('ontouchstart' in window) || (navigator.maxTouchPoints > 0) || (navigator.msMaxTouchPoints > 0));
-            if (isMobile) return; // Do not run on mobile devices
+                let lastX = 0;
+                let lastY = 0;
+                let currentX = 0;
+                let currentY = 0;
+                let angle = 0;
+                let isMoving = false;
+                let rafId;
 
-            const cursor = document.createElement('div');
-            cursor.id = 'magic-cursor';
-            document.body.appendChild(cursor);
+                function updateCursor() {
+                    const dx = currentX - lastX;
+                    const dy = currentY - lastY;
 
-            let lastX = 0;
-            let lastY = 0;
-            let currentX = 0;
-            let currentY = 0;
-            let angle = 0;
-            let isMoving = false;
-            let rafId;
+                    if (Math.abs(dx) > 0.1 || Math.abs(dy) > 0.1) {
+                        angle = Math.atan2(dy, dx) * 180 / Math.PI;
+                        cursor.style.transform = `translate(${currentX - 10}px, ${currentY - 10}px) rotate(${angle + 90}deg)`;
+                        lastX = currentX;
+                        lastY = currentY;
+                    }
+                    rafId = requestAnimationFrame(updateCursor);
+                }
 
-            function updateCursor() {
-                const dx = currentX - lastX;
-                const dy = currentY - lastY;
+                document.addEventListener('mousemove', (e) => {
+                    currentX = e.clientX;
+                    currentY = e.clientY;
+                    if (!isMoving) {
+                        isMoving = true;
+                        cursor.style.opacity = '1';
+                        lastX = currentX;
+                        lastY = currentY;
+                        cancelAnimationFrame(rafId); // Stop any previous animation frame
+                        updateCursor();
+                    }
+                });
 
-                if (Math.abs(dx) > 0.1 || Math.abs(dy) > 0.1) {
-                    angle = Math.atan2(dy, dx) * 180 / Math.PI;
-                    cursor.style.transform = `translate(${currentX - 10}px, ${currentY - 10}px) rotate(${angle + 90}deg)`;
+                document.addEventListener('mousedown', () => {
+                    cursor.classList.add('clicked');
+                });
+
+                document.addEventListener('mouseup', () => {
+                    cursor.classList.remove('clicked');
+                });
+
+                document.addEventListener('mouseleave', () => {
+                    cursor.style.opacity = '0';
+                    isMoving = false;
+                    cancelAnimationFrame(rafId);
+                });
+
+                 document.addEventListener('mouseenter', () => {
+                    // Reset position to avoid jump
                     lastX = currentX;
                     lastY = currentY;
-                }
-                rafId = requestAnimationFrame(updateCursor);
+                });
             }
-
-            document.addEventListener('mousemove', (e) => {
-                currentX = e.clientX;
-                currentY = e.clientY;
-                if (!isMoving) {
-                    isMoving = true;
-                    cursor.style.opacity = '1';
-                    lastX = currentX;
-                    lastY = currentY;
-                    cancelAnimationFrame(rafId); // Stop any previous animation frame
-                    updateCursor();
-                }
-            });
-
-            document.addEventListener('mousedown', () => {
-                cursor.classList.add('clicked');
-            });
-
-            document.addEventListener('mouseup', () => {
-                cursor.classList.remove('clicked');
-            });
-
-            document.addEventListener('mouseleave', () => {
-                cursor.style.opacity = '0';
-                isMoving = false;
-                cancelAnimationFrame(rafId);
-            });
-
-             document.addEventListener('mouseenter', () => {
-                // Reset position to avoid jump
-                lastX = currentX;
-                lastY = currentY;
-            });
         });
     </script>
 
