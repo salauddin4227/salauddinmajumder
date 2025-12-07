@@ -2087,6 +2087,12 @@
         .project-badge.live {
             background: linear-gradient(135deg, #10b981, #059669);
         }
+        /* Blueish badge for closed testing / special live state */
+        .project-badge.live-closed {
+            background: linear-gradient(135deg, #3b82f6, #2563eb);
+            box-shadow: 0 4px 15px rgba(37, 99, 235, 0.28);
+            color: #fff;
+        }
         .project-badge.featured {
             background: linear-gradient(135deg, #f59e0b, #d97706);
         }
@@ -3888,7 +3894,7 @@
                         <div class="floating-icon ring4 target"><i class="fas fa-crosshairs"></i></div>
                         <div class="floating-icon ring4 crown"><i class="fas fa-crown"></i></div>
                         
-                        <img src="profile2.JPG" alt="Salauddin Majumder" class="profile-pic">
+                        <img src="assets/images/profile/profile2.JPG" alt="Salauddin Majumder" class="profile-pic">
                         <div class="experience-badge">
                             <span class="badge-number">3+</span>
                             <span class="badge-text">Years Building</span>
@@ -3984,9 +3990,9 @@
                             </div>
                             <div class="about-slider-wrapper">
                                 <div class="project-image-slider">
-                                    <div class="project-image"><img src="s2.jpg" alt="About Me Image 1"></div>
-                                    <div class="project-image"><img src="s3.jpg" alt="About Me Image 2"></div>
-                                    <div class="project-image"><img src="s4.jpg" alt="About Me Image 3"></div>
+                                    <div class="project-image"><img src="assets/images/profile/s2.jpg" alt="About Me Image 1"></div>
+                                    <div class="project-image"><img src="assets/images/profile/s3.jpg" alt="About Me Image 2"></div>
+                                    <div class="project-image"><img src="assets/images/profile/s4.jpg" alt="About Me Image 3"></div>
                                 </div>
                                 <div class="slider-dots"></div>
                             </div>
@@ -4001,9 +4007,9 @@
         </section>
                             <div class="about-slider-wrapper">
                                 <div class="project-image-slider">
-                                    <div class="project-image"><img src="s2.jpg" alt="About Me Image 1"></div>
-                                    <div class="project-image"><img src="s3.jpg" alt="About Me Image 2"></div>
-                                    <div class="project-image"><img src="s4.jpg" alt="About Me Image 3"></div>
+                                    <div class="project-image"><img src="assets/images/profile/s2.jpg" alt="About Me Image 1"></div>
+                                    <div class="project-image"><img src="assets/images/profile/s3.jpg" alt="About Me Image 2"></div>
+                                    <div class="project-image"><img src="assets/images/profile/s4.jpg" alt="About Me Image 3"></div>
                                 </div>
                                 <div class="slider-dots"></div>
                             </div>
@@ -4039,7 +4045,7 @@
                             <li class="skill-item" data-level="expert"><i class="fas fa-terminal skill-icon"></i> <span>Dart</span></li>
                             <li class="skill-item" data-level="expert"><i class="fab fa-python skill-icon"></i> <span>Python</span></li>
                             <li class="skill-item"><i class="fab fa-js-square skill-icon"></i> <span>JavaScript</span></li>
-                            <li class="skill-item"><i class="fas fa-desktop skill-icon"></i> <span>C / C++</span></li>
+                            <li class="skill-item" data-level="expert"><i class="fas fa-desktop skill-icon"></i> <span>C / C++</span></li>
                         </ul>
                     </div>
                     
@@ -4053,9 +4059,12 @@
                         </div>
                         <ul class="skill-items-list">
                             <li class="skill-item" data-level="expert"><i class="fab fa-flutter skill-icon"></i> <span>Flutter</span></li>
-                            <li class="skill-item"><i class="fas fa-server skill-icon"></i> <span>REST API</span></li>
+                            <li class="skill-item" data-level="expert"><i class="fas fa-server skill-icon"></i> <span>REST API</span></li>
                             <li class="skill-item" data-level="expert"><i class="fas fa-fire skill-icon"></i> <span>Firebase</span></li>
                             <li class="skill-item"><i class="fas fa-cube skill-icon"></i> <span>SDK Integration</span></li>
+                            <li class="skill-item" ><i class="fas fa-terminal skill-icon"></i><span>Node.js</span></li>
+                            <li class="skill-item" ><i class="fab fa-js-square skill-icon"></i><span>Express</span></li>
+                            <li class="skill-item"><i class="fas fa-database skill-icon"></i> <span>MongoDB</span></li>
                         </ul>
                     </div>
                     
@@ -4069,9 +4078,9 @@
                         </div>
                         <ul class="skill-items-list">
                             <li class="skill-item" data-level="expert"><i class="fas fa-robot skill-icon"></i> <span>AI Integration</span></li>
-                            <li class="skill-item"><i class="fas fa-sitemap skill-icon"></i> <span>ML Models</span></li>
-                            <li class="skill-item"><i class="fas fa-chart-bar skill-icon"></i> <span>Data Analysis</span></li>
-                            <li class="skill-item"><i class="fas fa-language skill-icon"></i> <span>NLP</span></li>
+                            <li class="skill-item" data-level="expert"><i class="fas fa-sitemap skill-icon"></i> <span>ML Models</span></li>
+                            <li class="skill-item" data-level="expert"><i class="fas fa-chart-bar skill-icon"></i> <span>Data Analysis</span></li>
+                            <li class="skill-item" data-level="expert"><i class="fas fa-language skill-icon"></i> <span>NLP</span></li>
                         </ul>
                     </div>
                     
@@ -4117,8 +4126,9 @@
                         </div>
                         <ul class="skill-items-list">
                             <li class="skill-item" data-level="expert"><i class="fas fa-file-code skill-icon"></i> <span>VS Code</span></li>
-                            <li class="skill-item"><i class="fab fa-github skill-icon"></i> <span>Git/GitHub</span></li>
-                            <li class="skill-item"><i class="fab fa-android skill-icon"></i> <span>Android Studio</span></li>
+                            <li class="skill-item" data-level="expert"><i class="fab fa-github skill-icon"></i> <span>Git/GitHub</span></li>
+                            <li class="skill-item" data-level="expert"><i class="fab fa-android skill-icon"></i> <span>Android Studio</span></li>
+                            <li class="skill-item" data-level="expert"><svg class="skill-icon" width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="m19.94,20.59c1.09.82,2.73.27,1.23-1.23-4.5-4.36-3.55-16.36-9.14-16.36S7.39,15,2.89,19.36c-1.64,1.64.14,2.05,1.23,1.23,4.23-2.86,3.95-7.91,7.91-7.91s3.68,5.05,7.91,7.91Z"></path></svg> <span>Antigravity</span></li>
                         </ul>
                     </div>
                 </div>
@@ -4180,11 +4190,11 @@
                         <div class="project-badge live"><i class="fas fa-circle"></i> Live on Play Store</div>
                         <div class="mobile-frame">
                             <div class="project-image-slider">
-                                <div class="project-image"><img src="1.jpg" alt="UkilGiri Image 1"></div>
-                                <div class="project-image"><img src="2.jpg" alt="UkilGiri Image 2"></div>
-                                <div class="project-image"><img src="3.jpg" alt="UkilGiri Image 3"></div>
-                                <div class="project-image"><img src="4.jpg" alt="UkilGiri Image 4"></div>
-                                <div class="project-image"><img src="5.jpg" alt="UkilGiri Image 5"></div>
+                                <div class="project-image"><img src="assets/images/projects/ukilgiri/1.jpg" alt="UkilGiri Image 1"></div>
+                                <div class="project-image"><img src="assets/images/projects/ukilgiri/2.jpg" alt="UkilGiri Image 2"></div>
+                                <div class="project-image"><img src="assets/images/projects/ukilgiri/3.jpg" alt="UkilGiri Image 3"></div>
+                                <div class="project-image"><img src="assets/images/projects/ukilgiri/4.jpg" alt="UkilGiri Image 4"></div>
+                                <div class="project-image"><img src="assets/images/projects/ukilgiri/5.jpg" alt="UkilGiri Image 5"></div>
                             </div>
                             <div class="slider-dots"></div>
                         </div>
@@ -4210,19 +4220,19 @@
                     </div>
                     
                     <div class="project-card animate-on-scroll pop-in">
-                        <div class="project-badge live"><i class="fas fa-circle"></i> Live on Play Store</div>
+                        <div class="project-badge live live-closed"><i class="fas fa-circle"></i> Closed Testing in Play Store</div>
                         <div class="mobile-frame">
                             <div class="project-image-slider">
-                                <div class="project-image"><img src="q1.jpg" alt="QuizInfinite Image 1"></div>
-                                <div class="project-image"><img src="q2.jpg" alt="QuizInfinite Image 2"></div>
-                                <div class="project-image"><img src="q3.jpg" alt="QuizInfinite Image 3"></div>
-                                <div class="project-image"><img src="q4.jpg" alt="QuizInfinite Image 4"></div>
-                                <div class="project-image"><img src="q5.jpg" alt="QuizInfinite Image 5"></div>
-                                <div class="project-image"><img src="q6.jpg" alt="QuizInfinite Image 6"></div>
-                                <div class="project-image"><img src="q7.jpg" alt="QuizInfinite Image 7"></div>
-                                <div class="project-image"><img src="q8.jpg" alt="QuizInfinite Image 8"></div>
-                                <div class="project-image"><img src="q9.jpg" alt="QuizInfinite Image 9"></div>
-                                <div class="project-image"><img src="q10.jpg" alt="QuizInfinite Image 10"></div>
+                                <div class="project-image"><img src="assets/images/projects/quizinfinite/q1.jpg" alt="QuizInfinite Image 1"></div>
+                                <div class="project-image"><img src="assets/images/projects/quizinfinite/q2.jpg" alt="QuizInfinite Image 2"></div>
+                                <div class="project-image"><img src="assets/images/projects/quizinfinite/q3.jpg" alt="QuizInfinite Image 3"></div>
+                                <div class="project-image"><img src="assets/images/projects/quizinfinite/q4.jpg" alt="QuizInfinite Image 4"></div>
+                                <div class="project-image"><img src="assets/images/projects/quizinfinite/q5.jpg" alt="QuizInfinite Image 5"></div>
+                                <div class="project-image"><img src="assets/images/projects/quizinfinite/q6.jpg" alt="QuizInfinite Image 6"></div>
+                                <div class="project-image"><img src="assets/images/projects/quizinfinite/q7.jpg" alt="QuizInfinite Image 7"></div>
+                                <div class="project-image"><img src="assets/images/projects/quizinfinite/q8.jpg" alt="QuizInfinite Image 8"></div>
+                                <div class="project-image"><img src="assets/images/projects/quizinfinite/q9.jpg" alt="QuizInfinite Image 9"></div>
+                                <div class="project-image"><img src="assets/images/projects/quizinfinite/q10.jpg" alt="QuizInfinite Image 10"></div>
                             </div>
                             <div class="slider-dots"></div>
                         </div>
@@ -4252,16 +4262,16 @@
                         <div class="project-badge featured"><i class="fas fa-star"></i> Research Project</div>
                         <div class="mobile-frame">
                             <div class="project-image-slider">
-                                <div class="project-image"><img src="n1.jpg" alt="Data Collector Image 1"></div>
-                                <div class="project-image"><img src="n2.jpg" alt="Data Collector Image 2"></div>
-                                <div class="project-image"><img src="n3.jpg" alt="Data Collector Image 3"></div>
-                                <div class="project-image"><img src="n4.jpg" alt="Data Collector Image 4"></div>
-                                <div class="project-image"><img src="n5.jpg" alt="Data Collector Image 5"></div>
-                                <div class="project-image"><img src="n6.jpg" alt="Data Collector Image 6"></div>
-                                <div class="project-image"><img src="n7.jpg" alt="Data Collector Image 7"></div>
-                                <div class="project-image"><img src="n8.jpg" alt="Data Collector Image 8"></div>
-                                <div class="project-image"><img src="n9.jpg" alt="Data Collector Image 9"></div>
-                                <div class="project-image"><img src="n10.jpg" alt="Data Collector Image 10"></div>
+                                <div class="project-image"><img src="assets/images/projects/research/n1.jpg" alt="Data Collector Image 1"></div>
+                                <div class="project-image"><img src="assets/images/projects/research/n2.jpg" alt="Data Collector Image 2"></div>
+                                <div class="project-image"><img src="assets/images/projects/research/n3.jpg" alt="Data Collector Image 3"></div>
+                                <div class="project-image"><img src="assets/images/projects/research/n4.jpg" alt="Data Collector Image 4"></div>
+                                <div class="project-image"><img src="assets/images/projects/research/n5.jpg" alt="Data Collector Image 5"></div>
+                                <div class="project-image"><img src="assets/images/projects/research/n6.jpg" alt="Data Collector Image 6"></div>
+                                <div class="project-image"><img src="assets/images/projects/research/n7.jpg" alt="Data Collector Image 7"></div>
+                                <div class="project-image"><img src="assets/images/projects/research/n8.jpg" alt="Data Collector Image 8"></div>
+                                <div class="project-image"><img src="assets/images/projects/research/n9.jpg" alt="Data Collector Image 9"></div>
+                                <div class="project-image"><img src="assets/images/projects/research/n10.jpg" alt="Data Collector Image 10"></div>
                             </div>
                             <div class="slider-dots"></div>
                         </div>
@@ -4297,9 +4307,9 @@
                         <div class="project-badge featured"><i class="fas fa-book"></i> Published</div>
                         <div class="tablet-frame">
                             <div class="project-image-slider">
-                                <div class="project-image"><img src="p3.png" alt="AI in BME Book Chapter Image 1"></div>
-                                <div class="project-image"><img src="p5.png" alt="AI in BME Book Chapter Image 2"></div>
-                                <div class="project-image"><img src="p6.png" alt="AI in BME Book Chapter Image 3"></div>
+                                <div class="project-image"><img src="assets/images/projects/others/p3.png" alt="AI in BME Book Chapter Image 1"></div>
+                                <div class="project-image"><img src="assets/images/projects/others/p5.png" alt="AI in BME Book Chapter Image 2"></div>
+                                <div class="project-image"><img src="assets/images/projects/others/p6.png" alt="AI in BME Book Chapter Image 3"></div>
                             </div>
                             <div class="slider-dots"></div>
                         </div>
@@ -4321,8 +4331,8 @@
                     <div class="project-card animate-on-scroll pop-in">
                         <div class="tablet-frame">
                             <div class="project-image-slider">
-                                <div class="project-image"><img src="p4.png" alt="Micro-Credential Development Image 1"></div>
-                                <div class="project-image"><img src="p4.png" alt="Micro-Credential Development Image 2"></div>
+                                <div class="project-image"><img src="assets/images/projects/others/p4.png" alt="Micro-Credential Development Image 1"></div>
+                                <div class="project-image"><img src="assets/images/projects/others/p4.png" alt="Micro-Credential Development Image 2"></div>
                             </div>
                             <div class="slider-dots"></div>
                         </div>
@@ -4345,8 +4355,8 @@
                         <div class="project-badge"><i class="fas fa-users"></i> 1000+ Students</div>
                         <div class="tablet-frame">
                             <div class="project-image-slider">
-                                <div class="project-image"><img src="p2.jpg" alt="Monozog Platform Image 1"></div>
-                                <div class="project-image"><img src="p2.jpg" alt="Monozog Platform Image 2"></div>
+                                <div class="project-image"><img src="assets/images/projects/others/p2.jpg" alt="Monozog Platform Image 1"></div>
+                                <div class="project-image"><img src="assets/images/projects/others/p2.jpg" alt="Monozog Platform Image 2"></div>
                             </div>
                             <div class="slider-dots"></div>
                         </div>
@@ -4571,7 +4581,7 @@
                     <span class="ach-rank-badge"><i class="fas fa-medal"></i> 1st Runner Up</span>
                     <span class="ach-category">🚀 Startup</span>
                     <div class="achievement-card-image">
-                        <img src="p1.jpg" alt="DIU Accelerator Cup">
+                        <img src="assets/images/achievements/p1.jpg" alt="DIU Accelerator Cup">
                     </div>
                     <div class="achievement-card-content">
                         <div class="achievement-card-icon"><i class="fas fa-trophy"></i></div>
@@ -4596,7 +4606,7 @@
                     <span class="ach-rank-badge special"><i class="fas fa-star"></i> Published</span>
                     <span class="ach-category">📖 Research</span>
                     <div class="achievement-card-image">
-                        <img src="ekushe.jpg" alt="Published Book Chapter">
+                        <img src="assets/images/achievements/ekushe.jpg" alt="Published Book Chapter">
                     </div>
                     <div class="achievement-card-content">
                         <div class="achievement-card-icon special"><i class="fas fa-book"></i></div>
@@ -4611,7 +4621,7 @@
                     <span class="ach-rank-badge special"><i class="fas fa-certificate"></i> Certified</span>
                     <span class="ach-category">🌍 Language</span>
                     <div class="achievement-card-image">
-                        <img src="ielts.png" alt="IELTS Score">
+                        <img src="assets/images/achievements/ielts.png" alt="IELTS Score">
                     </div>
                     <div class="achievement-card-content">
                         <div class="achievement-card-icon special"><i class="fas fa-language"></i></div>
@@ -4626,7 +4636,7 @@
                     <span class="ach-rank-badge silver"><i class="fas fa-medal"></i> Runner Up</span>
                     <span class="ach-category">🎤 Speaking</span>
                     <div class="achievement-card-image">
-                        <img src="debating.png" alt="Debating Competition">
+                        <img src="assets/images/achievements/debating.png" alt="Debating Competition">
                     </div>
                     <div class="achievement-card-content">
                         <div class="achievement-card-icon"><i class="fas fa-comments"></i></div>
@@ -4641,7 +4651,7 @@
                     <span class="ach-rank-badge bronze"><i class="fas fa-medal"></i> 2nd Place</span>
                     <span class="ach-category">🎭 Arts</span>
                     <div class="achievement-card-image">
-                        <img src="poetry.png" alt="Poem Recitation">
+                        <img src="assets/images/achievements/poetry.png" alt="Poem Recitation">
                     </div>
                     <div class="achievement-card-content">
                         <div class="achievement-card-icon"><i class="fas fa-microphone-alt"></i></div>
